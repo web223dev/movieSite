@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 // import Slider from "react-slick";
 
 class MovieSection extends Component {    
     render() {
-        const { movieDetail } = this.props; 
+        const { moviedatas, loading } = this.props; //console.log(moviedatas, loading);
         return (
             <div>
-                {/* { movieDetail.total_pages} */}
+                {}
             </div>
         );
     }
 }
 
-export default MovieSection;
+export default connect(
+    (state) => ({
+        moviedatas: state.getmovie.data,
+        loading: state.getmovie.pending
+    })
+)(MovieSection);
