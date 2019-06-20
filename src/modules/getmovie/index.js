@@ -24,8 +24,6 @@ export default handleActions({
     [GET_MOVIE_SUCCESS]: (state, { payload: data }) => {
         const item = Map({ id: id++, data })
         return state.update('data', data => data.push(item)).set('pending', false)    
-        // return state.update('data', data => data)    
-        // return state.set('data', data)
     },
     [GET_MOVIE_FAILURE]: (state, action) => state.set('pending', false).set('error', true)
 }, initialState)

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from 'components/App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
@@ -14,6 +13,12 @@ import thunk from 'redux-thunk';
 
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.css';
+
+// Slick Slider CSS
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
+import './index.css';
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 

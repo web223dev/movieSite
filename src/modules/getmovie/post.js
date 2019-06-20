@@ -28,7 +28,6 @@ export const falidReceiveMovie = error => ({
 })
 
 export const getMovie = (url) => dispatch => {
-  console.log("post", url);
   dispatch(requestMovie());
   return getMovieAPI(url).then(res => {
     dispatch(receiveMovie(res.data))

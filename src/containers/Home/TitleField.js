@@ -21,7 +21,7 @@ const tdetails = [
 
 const TitleField = () => {
     return (
-        <div>
+        <div className="collections-container">
             {
                 tdetails.map((tdetail) =>
                     <TitleList 

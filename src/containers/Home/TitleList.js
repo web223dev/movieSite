@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as postActions from 'modules/getmovie/post';
+import Slider from "react-slick";
+import MovieSection from './MovieSection';
+
 
 class TitleList extends Component {
     componentDidMount() {
         const { urlString, PostActions } = this.props;
-        console.log("aurl", urlString);
-        if ( urlString !== '') {
+        if (urlString !== '') {
             PostActions.getMovie(urlString);
         }
     }
@@ -15,21 +17,35 @@ class TitleList extends Component {
         let movieDataShow;
         const { title, moviedatas, sectionId } = this.props;
 
-        if(moviedatas.toJS()[sectionId]){
-            // console.log(moviedatas.toJS()[sectionId].data);
+        const settings = {
+            infinite: false,
+            speed: 700,
+            slidesToScroll: 6,
+            slidesToShow: 6,
+            initialSlide: 0
+        };
+        if (moviedatas.toJS()[sectionId]) {
             const moviedataDetails = moviedatas.toJS()[sectionId].data.results;
             movieDataShow = moviedataDetails.map((mdetail) => {
-                var bgImg = 'http://image.tmdb.org/t/p/original' + mdetail.backdrop_path;
-                console.log(bgImg);
+                if (mdetail.backdrop_path)
+                    var bgImg = 'http://image.tmdb.org/t/p/w500' + mdetail.backdrop_path;
                 return (
-                    <div key={mdetail.id} style={{backgroundImage: 'url(' + bgImg + ')'}}></div>
+                    <MovieSection
+                        mdetail={mdetail}
+                        bgImg={bgImg}
+                        key={mdetail.id}
+                    />
                 )
             })
         }
         return (
-            <div>
-                <h1>{title}</h1>
-                {movieDataShow}                
+            <div className="collections-container">
+                <div className="collections-row">
+                    <h1 className="collections-row-name">{title}</h1>
+                    <Slider {...settings}>
+                        {movieDataShow}
+                    </Slider>
+                </div>
             </div>
         );
     }
