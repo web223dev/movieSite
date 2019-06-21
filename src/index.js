@@ -13,10 +13,11 @@ import thunk from 'redux-thunk';
 
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.css';
-
 // Slick Slider CSS
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+// rc-menu CSS
+import "rc-menu/assets/index.css";
 
 import './index.css';
 
