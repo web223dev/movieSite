@@ -8,6 +8,9 @@ function getMovieAPI(url) {
   return axios.get(`https://api.themoviedb.org/3/${url}/&api_key=${apiKey}`)
 }
 
+function getPopularMovieAPI(){
+  return axios.get('https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&page=1&api_key=87dfa1c669eea853da609d4968d294be')
+}
 // export const getUrl = url => ({
 //   type: SELECT_URL,
 //   url
@@ -28,8 +31,14 @@ export const falidReceiveMovie = error => ({
 })
 
 export const getMovie = (url) => dispatch => {
+  var movieAPI;
+  if(url){
+    movieAPI = getMovieAPI(url)    
+  } else {
+    movieAPI = getPopularMovieAPI();    
+  }
   dispatch(requestMovie());
-  return getMovieAPI(url).then(res => {
+  return movieAPI.then(res => {
     dispatch(receiveMovie(res.data))
   })
   .catch(err => {

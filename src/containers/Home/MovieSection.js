@@ -5,7 +5,7 @@ const MovieSection = ({ mdetail, bgImg }) => {
     return (
         <div className="movie-section">
             <Link to={`/${mdetail.id}`} className="movielink">
-                <img src={bgImg === null ? '' : bgImg} alt={mdetail.title} width={290} />
+                <img src={bgImg === null ? '' : bgImg} alt={mdetail.title} height={168} />
             </Link>
         </div>
     );

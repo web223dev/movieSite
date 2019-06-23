@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as postActions from 'modules/getmovie/post';
 import Slider from "react-slick";
 import MovieSection from './MovieSection';
-
+import settings from './SliderSettings';
 
 class TitleList extends Component {
     componentDidMount() {
@@ -15,25 +15,19 @@ class TitleList extends Component {
     }
     render() {
         let movieDataShow;
-        const { title, moviedatas, sectionId } = this.props;
+        const { title, moviedatas, sectionId } = this.props; console.log(moviedatas.toJS());
 
-        const settings = {
-            infinite: false,
-            speed: 700,
-            slidesToScroll: 6,
-            slidesToShow: 6,
-            initialSlide: 0
-        };
+        
         if (moviedatas.toJS()[sectionId]) {
             const moviedataDetails = moviedatas.toJS()[sectionId].data.results;
-            movieDataShow = moviedataDetails.map((mdetail) => {
+            movieDataShow = moviedataDetails.map((mdetail, i) => {
                 if (mdetail.backdrop_path)
                     var bgImg = 'http://image.tmdb.org/t/p/w500' + mdetail.backdrop_path;
                 return (
                     <MovieSection
                         mdetail={mdetail}
                         bgImg={bgImg}
-                        key={mdetail.id}
+                        key={i}
                     />
                 )
             })

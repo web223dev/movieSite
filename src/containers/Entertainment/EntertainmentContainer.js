@@ -4,7 +4,7 @@ import PageHeader from 'components/PageHeader';
 class EntertainmentContainer extends Component {
     render() {
         return (
-            <div>
+            <div className="collections-container">
                 <PageHeader name="Entertainment"/>
             </div>
         );

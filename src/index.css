@@ -127,3 +127,15 @@ code {
   font-size: 36px;
   margin-left: 30px;
 }
+
+/* Page Header */
+.pg-collections-header {
+  margin: 36px 0;
+}
+.pg-collections-header-name{
+  font-size: 30px;
+  line-height: 34px;
+  font-weight: 400;
+  color: #fff;
+  font-weight: bold;
+}
