@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
+import NewsContainer from 'containers/News/NewsContainer';
 
 class News extends Component {
     render() {
         return (
-            <div>
-                News
-            </div>
+            <NewsContainer />
         );
     }
 }

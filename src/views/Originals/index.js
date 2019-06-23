@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
+import OriginalsContainer from 'containers/Originals/OriginalsContainer';
 
 class Originals extends Component {
     render() {
         return (
-            <div>
-                Originals
-            </div>
+            <OriginalsContainer />
         );
     }
 }

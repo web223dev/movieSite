@@ -4,9 +4,7 @@ import HomeContainer from 'containers/Home/HomeContainer';
 class Home extends Component {
     render() {
         return (
-            <div>
-                <HomeContainer />
-            </div>
+            <HomeContainer />
         );
     }
 }
