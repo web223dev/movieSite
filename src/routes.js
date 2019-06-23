@@ -1,7 +1,10 @@
 import Home from 'views/Home';
-import Category from 'views/Category';
-import Detail from 'views/Detail';
-import Watch from 'views/Watch';
+import Dramas from 'views/Dramas';
+import Entertainment from 'views/Entertainment';
+import News from 'views/News';
+import Films from 'views/Films';
+import Originals from 'views/Originals';
+import RecentlyAdded from 'views/RecentlyAdded';
 
 const dashboardRoutes = [
     {
@@ -10,19 +13,34 @@ const dashboardRoutes = [
         component: Home
     },
     {
-        path: "/category",
-        name: "Category",
-        component: Category
+        path: "/tv-programmes/dramas",
+        name: "Dramas",
+        component: Dramas
     },
     {
-        path: "/detail",
-        name: "Detail",
-        component: Detail
+        path: "/tv-programmes/entertainment",
+        name: "Entertainment",
+        component: Entertainment
     },
     {
-        path: "/watch",
-        name: "Watch",
-        component: Watch
+        path: "/tv-programmes/news",
+        name: "News",
+        component: News
+    },
+    {
+        path: "/films",
+        name: "Films",
+        component: Films
+    },
+    {
+        path: "/originals",
+        name: "Originals",
+        component: Originals
+    },
+    {
+        path: "/recently-added",
+        name: "Recently Added",
+        component: RecentlyAdded
     }
 ];
 

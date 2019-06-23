@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Watch extends Component {
+class Dramas extends Component {
     render() {
         return (
             <div>
-                Watch
+                Dramas
             </div>
         );
     }
 }
 
-export default Watch;
+export default Dramas;

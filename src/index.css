@@ -34,3 +34,96 @@ code {
 .slick-slider{
   margin: 16px 0;
 }
+
+/* Header */
+/* .rc-menu{
+  background-color: #000000;
+  border-bottom: none;
+}
+.rc-menu .rc-menu-item a{
+  display: block;
+  color: #ccc;
+  cursor: pointer;
+  line-height: 54px;
+  padding: 0 20px;
+}
+.rc-menu .rc-menu-item a:hover{
+  text-decoration: none;
+  color: white
+}
+.rc-menu-item-selected{
+  background-color: inherit;
+  border-bottom: 7px solid rgb(184, 19, 13) !important;
+}
+.rc-menu .rc-menu-item{
+  padding: 0;
+  border-bottom: 7px solid transparent;
+}
+.rc-menu-horizontal > .rc-menu-submenu, .rc-menu-horizontal > .rc-menu-item{
+  background-color: inherit;
+  border-bottom: 7px solid transparent;
+}
+.rc-menu-horizontal > .rc-menu-submenu-active, .rc-menu-horizontal > .rc-menu-item-active{
+  border-bottom: 7px solid rgb(184, 19, 13);
+  background-color: inherit
+}
+.rc-menu-submenu-title{
+  color: #ccc;
+  cursor: pointer;
+}
+.rc-menu-submenu-selected{
+  border-bottom: 7px solid rgb(184, 19, 13);
+} */
+
+/* Header Input */
+
+.navbar-input-space {
+  flex: 3;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 50px;
+}
+.navbar-input-container {
+  display: flex;
+  -webkit-transition: width 0.25s ease-in-out;
+  -moz-transition: width 0.25s ease-in-out;
+  -ms-transition: width 0.25s ease-in-out;
+  -o-transition: width 0.25s ease-in-out;
+  transition: width 0.25s ease-in-out;
+  border: 2px solid transparent;
+}
+.navbar-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px 8px 5px 8px;
+}
+
+.navbar-input i {
+  font-size: 28px;
+}
+
+.navbar-input input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  margin-left: 15px;
+  width: 100%;
+  font-size: 22px;
+  -webkit-transition: opacity 0.25s ease-in-out;
+  -moz-transition: opacity 0.25s ease-in-out;
+  -ms-transition: opacity 0.25s ease-in-out;
+  -o-transition: opacity 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.navbar-input input:focus {
+  outline: 0;
+}
+
+.navbar-input-reset-query i {
+  font-size: 36px;
+  margin-left: 30px;
+}

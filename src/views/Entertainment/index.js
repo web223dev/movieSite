@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Category extends Component {
+class Entertainment extends Component {
     render() {
         return (
             <div>
-                Category
+                Entertainment / Current affairs
             </div>
         );
     }
 }
 
-export default Category;
+export default Entertainment;
