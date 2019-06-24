@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as postActions from 'modules/getmovie/post';
+import * as postActions from 'modules/home/post';
 import Slider from "react-slick";
 import MovieSection from './MovieSection';
 import settings from './SliderSettings';
@@ -15,7 +15,7 @@ class TitleList extends Component {
     }
     render() {
         let movieDataShow;
-        const { title, moviedatas, sectionId } = this.props; console.log(moviedatas.toJS());
+        const { title, moviedatas, sectionId } = this.props; console.log("tl", moviedatas.toJS());
 
         
         if (moviedatas.toJS()[sectionId]) {
@@ -47,7 +47,7 @@ class TitleList extends Component {
 
 export default connect(
     (state) => ({
-        moviedatas: state.getmovie.get('data')
+        moviedatas: state.home.get('data')
     }),
     (dispatch) => ({
         PostActions: bindActionCreators(postActions, dispatch)
