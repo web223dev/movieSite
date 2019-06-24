@@ -3,8 +3,8 @@ import { GET_MOVIE_PENDING, GET_MOVIE_SUCCESS, GET_MOVIE_FAILURE } from './type'
 
 const apiKey = '87dfa1c669eea853da609d4968d294be';
 
-function getMovieAPI(url) {
-  return axios.get(`https://api.themoviedb.org/3/${url}/&api_key=${apiKey}`)
+function getMovieAPI(keyword) {
+  return axios.get(`https://api.themoviedb.org/3/movie/${keyword}?api_key=${apiKey}&language=en-US&page=2`)
 }
 
 export const requestMovie = () => ({

@@ -5,17 +5,17 @@ const tdetails = [
     {
         id: 0,
         title: 'Continue Watching',
-        urlString: 'genre/27/movies?sort_by=popularity.desc&page=1'        
+        urlString: 'now_playing'
     },
     {
         id: 1,
         title: 'Originals Contents',
-        urlString: 'genre/878/movies?sort_by=popularity.desc&page=1'        
+        urlString: 'popular'        
     },
     {
         id: 2,
         title: 'Trending Now',
-        urlString: 'genre/35/movies?sort_by=popularity.desc&page=1'        
+        urlString: 'top_rated'        
     }
 ]
 

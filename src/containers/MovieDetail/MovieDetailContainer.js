@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import * as postActions from 'modules/moviedetail/post';
 
 class MovieDetailContainer extends Component {
-    // componentDidMount() {
-    //     const { PostActions } = this.props;
-    //     PostActions.getMovieDetail();
-    // }
+    componentDidMount() {
+        const { PostActions } = this.props;
+        const id = this.props.location.pathname.substring(7);
+        PostActions.getMovieDetail(id);
+    }
     render() {
-        console.log(this.props);
+        const { moviedatas } = this.props;
+        console.log(moviedatas);
         return (
             <div>
                 MovieDetailContainer
@@ -26,5 +28,4 @@ export default connect(
     (dispatch) => ({
         PostActions: bindActionCreators(postActions, dispatch)
     })
-// )(withRouter(MovieDetailContainer));
-)(MovieDetailContainer);
+)(withRouter(MovieDetailContainer));
