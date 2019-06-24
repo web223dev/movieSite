@@ -3,10 +3,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as postActions from 'modules/home/post';
 import Slider from "react-slick";
-import MovieSection from './MovieSection';
+import MovieSection from 'components/MovieSection';
 import settings from './SliderSettings';
 
 class TitleList extends Component {
+    componentWillReceiveProps(nextProps) {
+        const { PostActions, urlString } = this.props;
+        if (urlString !== nextProps.urlString) {
+            PostActions.getMovie(nextProps.urlString);
+        }
+    }
     componentDidMount() {
         const { urlString, PostActions } = this.props;
         if (urlString !== '') {
@@ -16,8 +22,8 @@ class TitleList extends Component {
     render() {
         let movieDataShow;
         const { title, moviedatas, sectionId } = this.props; console.log("tl", moviedatas.toJS());
+        //console.log(this.props.urlString);
 
-        
         if (moviedatas.toJS()[sectionId]) {
             const moviedataDetails = moviedatas.toJS()[sectionId].data.results;
             movieDataShow = moviedataDetails.map((mdetail, i) => {

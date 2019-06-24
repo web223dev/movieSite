@@ -21,7 +21,7 @@ class CommonMenu extends Component {
     }
     render() {
         const { children } = this.state;
-        const { handleClick, pathname } = this.props; console.log(pathname)
+        const { handleClick, pathname } = this.props;
         return (
             <div>
                 <Menu

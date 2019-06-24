@@ -5,12 +5,18 @@ import News from 'views/News';
 import Films from 'views/Films';
 import Originals from 'views/Originals';
 import RecentlyAdded from 'views/RecentlyAdded';
+import MovieDetail from 'views/MovieDetail';
 
 const dashboardRoutes = [
     {
         path: "/",
         name: "Home",
         component: Home
+    },
+    {
+        path:"/movie/:id",
+        name: "MovieDetail",
+        component: MovieDetail
     },
     {
         path: "/tv-programmes/dramas",
