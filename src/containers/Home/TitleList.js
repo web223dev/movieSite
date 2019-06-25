@@ -21,7 +21,7 @@ class TitleList extends Component {
     }
     render() {
         let movieDataShow;
-        const { title, moviedatas, sectionId } = this.props; console.log("tl", moviedatas.toJS());
+        const { title, moviedatas, sectionId } = this.props;// console.log("tl", moviedatas.toJS());
         //console.log(this.props.urlString);
 
         if (moviedatas.toJS()[sectionId]) {

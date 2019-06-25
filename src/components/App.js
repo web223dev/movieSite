@@ -7,21 +7,21 @@ const switchRoutes = (
   <Switch>
     {
       routes.map((prop, key) => 
-        (prop.path === "/") ?
-          (
+        // (prop.path === "/") ?
+          // (
             <Route
-              path={prop.path}
               exact
-              component={prop.component}
-              key={key}
-            />
-          ) : (
-            <Route 
               path={prop.path}
               component={prop.component}
               key={key}
             />
-          )
+          // ) : (
+          //   <Route 
+          //     path={prop.path}
+          //     component={prop.component}
+          //     key={key}
+          //   />
+          // )
       )
     }
   </Switch>

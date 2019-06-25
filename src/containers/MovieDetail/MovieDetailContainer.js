@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import * as postActions from 'modules/moviedetail/post';
 import * as similarMovieActions from 'modules/moviedetail/similar';
 import Daredevil from 'assets/images/Logos/Daredevil.png';
@@ -16,18 +16,26 @@ class MovieDetailContainer extends Component {
         PostActions.getMovieDetail(id);
         SimilarMovieActions.getSimilarMovie(id);
     }
+    componentDidUpdate(prevProps) {
+        const { PostActions, SimilarMovieActions } = this.props;
+        const id = this.props.location.pathname.substring(7)
+        const prev_id = prevProps.location.pathname.substring(7)
+        if (id !== prev_id) {
+            PostActions.getMovieDetail(id);
+            SimilarMovieActions.getSimilarMovie(id);
+        }
+    }
     render() {
         let SimilarMovies;
-        const { moviedata, similar_movies } = this.props;        
+        const { moviedata, similar_movies } = this.props;
         const sm_movies = similar_movies.results;
-        const settings = {
-            infinite: false,
-            speed: 700,
-            slidesToScroll: 6,
-            slidesToShow: 6,
-            initialSlide: 0,
-            
-        };
+        // const settings = {
+        //     infinite: false,
+        //     speed: 700,
+        //     slidesToScroll: 6,
+        //     slidesToShow: 6,
+        //     initialSlide: 0,
+        // };
 
 
         if (moviedata.backdrop_path)
@@ -38,11 +46,12 @@ class MovieDetailContainer extends Component {
                 if (smilar_movie.poster_path)
                     var smImg = 'http://image.tmdb.org/t/p/original' + smilar_movie.poster_path;
                 return (
-                    <div className="movie-section" key={i}>
-                        <Link to={`/movie/${smilar_movie.id}`} className="movielink">
-                            <img src={smImg === null ? '' : smImg} alt={smilar_movie.title} height={298} />
-                        </Link>
-                    </div>
+                    <MovieSection
+                        mdetail={smilar_movie}
+                        bgImg={smImg}
+                        pagename="movieDetail"
+                        key={i}
+                    />
                 )
             })
         }

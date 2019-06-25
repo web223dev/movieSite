@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PageHeader from 'components/PageHeader';
 import { connect } from 'react-redux';
-import { compose, bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
 import * as postActions from 'modules/films/postmovie';
-import sizeMe from 'react-sizeme';
 import StackGrid from "react-stack-grid";
 import MovieSection from 'components/MovieSection';
 
@@ -14,20 +13,19 @@ class FilmsContainer extends Component {
     }
     render() {
         let movieDataShow;
-        const { moviedatas, size: { width } } = this.props; //console.log("Fm", moviedatas.results);   
+        const { moviedatas } = this.props; //console.log("Fm", moviedatas.results);   
         const mdatas = moviedatas.results;
         if (mdatas !== undefined) {
             movieDataShow = mdatas.map((mdata, i) => {
-                if (mdata.backdrop_path) {
+                if (mdata.backdrop_path)
                     var bgImg = 'http://image.tmdb.org/t/p/w500' + mdata.backdrop_path;
-                    return (
-                        <MovieSection
-                            mdetail={mdata}
-                            bgImg={bgImg}
-                            key={i}
-                        />
-                    )
-                }
+                return (
+                    <MovieSection
+                        mdetail={mdata}
+                        bgImg={bgImg}
+                        key={i}
+                    />
+                )
             })
         }
         return (
@@ -44,14 +42,11 @@ class FilmsContainer extends Component {
     }
 }
 
-export default compose(
-    sizeMe(),
-    connect(
-        (state) => ({
-            moviedatas: state.films.data
-        }),
-        (dispatch) => ({
-            PostActions: bindActionCreators(postActions, dispatch)
-        })
-    )
+export default connect(
+    (state) => ({
+        moviedatas: state.films.data
+    }),
+    (dispatch) => ({
+        PostActions: bindActionCreators(postActions, dispatch)
+    })
 )(FilmsContainer);
