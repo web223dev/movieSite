@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import routes from 'routes.js';
-import Navbar from 'components/Navbar';
+import Menu from 'components/Menu';
 
 const switchRoutes = (
   <Switch>
@@ -31,7 +31,7 @@ class App extends Component {
   render() {
     return (
       <div className="container-fulid">
-        <Navbar />
+        <Menu />
         {switchRoutes}
       </div>
     );

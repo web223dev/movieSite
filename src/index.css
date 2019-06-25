@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #181818;
+  color: #fff;
 }
 
 code {
@@ -138,4 +139,53 @@ code {
   font-weight: 400;
   color: #fff;
   font-weight: bold;
+}
+
+/* MovieDetail */
+.mdtitle-section{
+  min-height: 60vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+/* Responsive */
+#section-hero {
+  padding: 0px 4vw 30px;
+  min-height: 60vh;
+  max-width: 66%;
+  margin-left: auto;
+}
+.left-gradient-overlay{
+  background-image: linear-gradient(to right,#181818 0,rgba(24,24,24,0) 100%);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 34%;
+  height: 60vh;
+  z-index: 2;
+  margin-top: 57px;
+}
+.hero-wrapper{
+  z-index: 5;
+  position: absolute;
+  left: 0;
+  padding-left: 50px;
+  padding-top: 5rem;
+}
+.hero-wrapper .title-logo{
+  width: 500px;
+  height: 112px;
+  margin-bottom: 20px;
+}
+.hero-wrapper .movie-link-buttons .btn{
+  border-radius: 0;
+  margin-bottom: 10px;
+  padding-right: 3rem;
+  padding-left: 1rem;
+  text-align: left;
+}
+.mdsmilar-section{
+  margin-top: 4rem;
+  padding: 0 50px;
 }
