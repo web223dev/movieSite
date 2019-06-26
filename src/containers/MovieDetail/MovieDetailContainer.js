@@ -8,6 +8,8 @@ import Daredevil from 'assets/images/Logos/Daredevil.png';
 import Slider from "react-slick";
 import settings from 'containers/Home/SliderSettings';
 import MovieSection from 'components/MovieSection';
+import StarRatings from 'react-star-ratings';
+import ConvertImage from 'components/ConvertImage';
 
 class MovieDetailContainer extends Component {
     componentDidMount() {
@@ -39,12 +41,12 @@ class MovieDetailContainer extends Component {
 
 
         if (moviedata.backdrop_path)
-            var bgImg = 'http://image.tmdb.org/t/p/original' + moviedata.backdrop_path;
+            var bgImg = ConvertImage('original', moviedata.backdrop_path);
 
         if (sm_movies) {
             SimilarMovies = sm_movies.map((smilar_movie, i) => {
                 if (smilar_movie.poster_path)
-                    var smImg = 'http://image.tmdb.org/t/p/original' + smilar_movie.poster_path;
+                    var smImg = ConvertImage('original',smilar_movie.poster_path);
                 return (
                     <MovieSection
                         mdetail={smilar_movie}
@@ -55,17 +57,27 @@ class MovieDetailContainer extends Component {
                 )
             })
         }
+        if (moviedata.vote_average)
+            var current_rating = moviedata.vote_average / 2;
         return (
             <div className="mdtitle-wrapper">
                 <section className="mdtitle-section" id="section-hero" style={{ backgroundImage: 'url(' + bgImg + ')' }}>
                     <div className="left-gradient-overlay" />
                     <div className="hero-wrapper">
-                        <div>
+                        <div className="hero-header">
                             <img className="title-logo" src={Daredevil} alt="Daredevil" />
                             <div>{moviedata.title}</div>
-                            <div>{moviedata.vote_average}</div>
-                            <div>{moviedata.release_date}</div>
-                            <span className="duration">5 Seasons</span>
+                            <StarRatings
+                                rating={current_rating}
+                                starRatedColor='#b11b1b'
+                                starEmptyColor='#ccc'
+                                starDimension="20px"
+                                starSpacing="0px"
+                            />
+                            <div className="date_duration">
+                                <span className="release-date">{moviedata.release_date}</span>
+                                <span className="duration">1 Seasons</span>
+                            </div>
                         </div>
                         <div className="btn-group-vertical movie-link-buttons">
                             <button type="button" className="btn btn-primary">OPENLOAD</button>

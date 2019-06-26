@@ -123,7 +123,7 @@ code {
   background: transparent !important;
   color: #fff !important;
 }
-#menuinput-wrap input[type="submit"] {
+/* #menuinput-wrap input[type="submit"] {
   height: 50px;
   width: 42px;
   display: inline-block;
@@ -140,7 +140,7 @@ code {
   opacity: 0.4;
   cursor: pointer;
   transition: opacity .4s ease;
-}
+} */
 
 #menuinput-wrap input[type="submit"]:hover {
   opacity: 0.8;
@@ -171,15 +171,43 @@ code {
   font-weight: bold;
 }
 
-/* MovieDetail */
+/* Home Page */
+
+.mv-content-header{
+  background-color: #000;
+  height: 70px;  
+  padding: 0 45px;
+}
+.collections-container{
+  margin: 10px 27px;
+}
+.search-movie-section{
+  display: none;
+}
+.collections-container[data-loaded='true']{
+  display: block;
+}
+.collections-row-name {
+  font-size: 20px;
+  line-height: 27px;
+  font-weight: 500;
+  color: #fff;
+}
+.collections-row {
+  margin-top: 40px;
+}
+
+.slick-slider{
+  margin: 16px 0;
+}
+
+/* MovieDetail Page */
 .mdtitle-section{
   min-height: 60vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
 }
-
-/* Responsive */
 #section-hero {
   padding: 0px 4vw 30px;
   min-height: 52vh;
@@ -215,37 +243,21 @@ code {
   padding-left: 1rem;
   text-align: left;
 }
+.hero-wrapper .hero-header{
+  margin-bottom: 20px;
+}
+.hero-wrapper .date_duration{
+  display: inline-block;
+  vertical-align: middle;
+}
 .mdsmilar-section{
   margin-top: 4rem;
   padding: 0 50px;
 }
-
-/* Home Page */
-
-.mv-content-header{
-  background-color: #000;
-  height: 70px;  
-  padding: 0 45px;
+.mdtitle-wrapper .release-date{
+  font-size: 22px;
+  padding-left: 10px;
 }
-.collections-container{
-  margin: 10px 27px;
-}
-.search-movie-section{
-  display: none;
-}
-.collections-container[data-loaded='true']{
-  display: block;
-}
-.collections-row-name {
-  font-size: 20px;
-  line-height: 27px;
-  font-weight: 500;
-  color: #fff;
-}
-.collections-row {
-  margin-top: 40px;
-}
-
-.slick-slider{
-  margin: 16px 0;
+.mdtitle-wrapper .duration{
+  padding-left: 20px;
 }

@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as postActions from 'modules/films/postmovie';
 import StackGrid from "react-stack-grid";
 import MovieSection from 'components/MovieSection';
+import ConvertImage from 'components/ConvertImage';
 
 class FilmsContainer extends Component {
     componentDidMount() {
@@ -18,7 +19,7 @@ class FilmsContainer extends Component {
         if (mdatas !== undefined) {
             movieDataShow = mdatas.map((mdata, i) => {
                 if (mdata.backdrop_path)
-                    var bgImg = 'http://image.tmdb.org/t/p/w500' + mdata.backdrop_path;
+                    var bgImg = ConvertImage(500, mdata.backdrop_path);
                 return (
                     <MovieSection
                         mdetail={mdata}
