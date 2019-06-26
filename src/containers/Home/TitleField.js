@@ -1,7 +1,7 @@
 import React from 'react';
 import TitleList from './TitleList';
 
-const tdetails = [
+const tdetails = [    
     {
         id: 0,
         title: 'Continue Watching',
@@ -21,7 +21,8 @@ const tdetails = [
 
 const TitleField = () => {
     return (
-        <div className="collections-container">
+        <div className="collections-container"> 
+            <TitleList title="Search Result" urlString="" />           
             {
                 tdetails.map((tdetail) =>
                     <TitleList 

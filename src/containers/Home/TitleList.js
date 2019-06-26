@@ -5,30 +5,50 @@ import * as postActions from 'modules/home/post';
 import Slider from "react-slick";
 import MovieSection from 'components/MovieSection';
 import settings from './SliderSettings';
+import ConvertImage from 'components/ConvertImage';
 
 class TitleList extends Component {
     componentWillReceiveProps(nextProps) {
-        const { PostActions, urlString } = this.props;
-        if (urlString !== nextProps.urlString) {
+        const { PostActions, urlString } = this.props; //console.log(urlString);
+        if (nextProps.urlString !== urlString && nextProps.urlString !== "") {
             PostActions.getMovie(nextProps.urlString);
+            console.log('11')
         }
     }
     componentDidMount() {
-        const { urlString, PostActions } = this.props;
-        if (urlString !== '') {
+        const { urlString, PostActions } = this.props;// console.log(urlString);
+        if (urlString !== "") {
             PostActions.getMovie(urlString);
         }
     }
     render() {
-        let movieDataShow;
-        const { title, moviedatas, sectionId } = this.props;// console.log("tl", moviedatas.toJS());
-        //console.log(this.props.urlString);
-
+        let movieDataShow, searchedMovieShow;
+        const { title, moviedatas, sectionId, searched_movie, data_loaded } = this.props; //console.log("tl", moviedatas.toJS());        
+        // if (title === 'Search Result' && searched_movie.length !== 0) {
+        //     console.log('1')
+        //     console.log(data_loaded);
+        // } else {
+        //     console.log('2')
+        // }
+        if (title==='Search Result' && searched_movie.length !== 0) {
+            const searchedMovies = searched_movie.results;
+            searchedMovieShow = searchedMovies.map((searchedMovie, i) => {
+                if (searchedMovie.backdrop_path)
+                    var bgImg = ConvertImage(500, searchedMovie.backdrop_path);
+                return (
+                    <MovieSection
+                        mdetail={searchedMovie}
+                        bgImg={bgImg}
+                        key={i}
+                    />
+                )
+            })
+        }
         if (moviedatas.toJS()[sectionId]) {
             const moviedataDetails = moviedatas.toJS()[sectionId].data.results;
             movieDataShow = moviedataDetails.map((mdetail, i) => {
                 if (mdetail.backdrop_path)
-                    var bgImg = 'http://image.tmdb.org/t/p/w500' + mdetail.backdrop_path;
+                    var bgImg = ConvertImage(500, mdetail.backdrop_path);
                 return (
                     <MovieSection
                         mdetail={mdetail}
@@ -39,10 +59,11 @@ class TitleList extends Component {
             })
         }
         return (
-            <div className="collections-container">
+            <div className={`collections-container ${title==='Search Result' && 'search-movie-section'}`} data-loaded={data_loaded}>
                 <div className="collections-row">
                     <h1 className="collections-row-name">{title}</h1>
                     <Slider {...settings}>
+                        {searchedMovieShow}
                         {movieDataShow}
                     </Slider>
                 </div>
@@ -53,7 +74,9 @@ class TitleList extends Component {
 
 export default connect(
     (state) => ({
-        moviedatas: state.home.get('data')
+        moviedatas: state.home.get('data'),
+        searched_movie: state.search_movie.data,
+        data_loaded: state.search_movie.data_loaded
     }),
     (dispatch) => ({
         PostActions: bindActionCreators(postActions, dispatch)
