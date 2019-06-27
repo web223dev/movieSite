@@ -46,7 +46,7 @@ class FilmsContainer extends Component {
             })
         }
         return (
-            <div className="collections-container">
+            <div className="films collections-container">
                 <PageHeader name="Films" />
                 <StackGrid
                     // columnWidth={width <= 672 ? '100%' : 298}

@@ -158,7 +158,10 @@ code {
 .movie-section{
   margin: 0 6px;
 }
-
+.movie-section .movielink img{
+  width: 100%;
+  height: 100%
+}
 /* Page Header */
 .pg-collections-header {
   margin: 36px 0;
@@ -252,7 +255,7 @@ code {
   vertical-align: middle;
 }
 .mdsmilar-section{
-  margin-top: 4rem;
+  margin-top: 45px;
   padding: 0 50px;
 }
 .mdtitle-wrapper .release-date{
@@ -261,4 +264,9 @@ code {
 }
 .mdtitle-wrapper .duration{
   padding-left: 20px;
+}
+
+/* Films Page */
+.films .movie-section{
+  margin: 0;
 }

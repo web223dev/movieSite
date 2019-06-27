@@ -6,7 +6,7 @@ import * as postActions from 'modules/moviedetail/post';
 import * as similarMovieActions from 'modules/moviedetail/similar';
 import Daredevil from 'assets/images/Logos/Daredevil.png';
 import Slider from "react-slick";
-import settings from 'containers/Home/SliderSettings';
+// import settings from 'containers/Home/SliderSettings';
 import MovieSection from 'components/MovieSection';
 import StarRatings from 'react-star-ratings';
 import ConvertImage from 'components/ConvertImage';
@@ -46,13 +46,13 @@ class MovieDetailContainer extends Component {
         let SimilarMovies; 
         const { moviedata, similar_movies } = this.props;
         const sm_movies = similar_movies.results;
-        // const settings = {
-        //     infinite: false,
-        //     speed: 700,
-        //     slidesToScroll: 6,
-        //     slidesToShow: 6,
-        //     initialSlide: 0,
-        // };
+        const settings = {
+            infinite: false,
+            speed: 700,
+            slidesToScroll: 8,
+            slidesToShow: 8,
+            initialSlide: 0,
+        };
 
 
         if (moviedata.backdrop_path)
@@ -61,7 +61,7 @@ class MovieDetailContainer extends Component {
         if (sm_movies) {
             SimilarMovies = sm_movies.map((smilar_movie, i) => {
                 if (smilar_movie.poster_path)
-                    var smImg = ConvertImage('original',smilar_movie.poster_path);
+                    var smImg = ConvertImage(500, smilar_movie.poster_path);
                 return (
                     <MovieSection
                         mdetail={smilar_movie}
