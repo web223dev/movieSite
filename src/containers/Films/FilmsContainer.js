@@ -51,6 +51,7 @@ class FilmsContainer extends Component {
                 <StackGrid
                     // columnWidth={width <= 672 ? '100%' : 298}
                     columnWidth={298}
+                    monitorImagesLoaded={true}
                 >
                     {movieDataShow}
                 </StackGrid>
