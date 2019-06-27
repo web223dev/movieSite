@@ -10,7 +10,6 @@ import settings from './detailSliderSettings';
 import MovieSection from 'components/MovieSection';
 import StarRatings from 'react-star-ratings';
 import ConvertImage from 'components/ConvertImage';
-import { withSize } from 'react-sizeme'
 
 class MovieDetailContainer extends Component {
     componentDidMount() {
@@ -45,7 +44,7 @@ class MovieDetailContainer extends Component {
     }
     render() {
         let SimilarMovies;
-        const { moviedata, similar_movies, size } = this.props;
+        const { moviedata, similar_movies } = this.props;
         const sm_movies = similar_movies.results; 
 
         if (moviedata.backdrop_path)
@@ -105,7 +104,6 @@ class MovieDetailContainer extends Component {
 }
 const composedMovieDetailContainer = compose(
     withRouter,
-    withSize(),
     connect(
         (state) => ({
             moviedata: state.moviedetail.data,

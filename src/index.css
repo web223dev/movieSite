@@ -341,6 +341,15 @@ code {
   .hero-wrapper{
     margin-left: 0;
     padding: 5em 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%)
+  }
+  .hero-wrapper .date_duration{
+    display: block;
+  }
+  .mdtitle-wrapper .release-date{
+    padding-left: 0;
   }
 }
 @media (max-width: 370px){
