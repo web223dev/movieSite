@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PageHeader from 'components/PageHeader';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 import * as postActions from 'modules/films/postmovie';
 import StackGrid from "react-stack-grid";
 import MovieSection from 'components/MovieSection';
@@ -9,8 +10,23 @@ import ConvertImage from 'components/ConvertImage';
 
 class FilmsContainer extends Component {
     componentDidMount() {
-        const { PostActions } = this.props;
+        const { PostActions,  } = this.props;
         PostActions.getPopularMovie();
+
+        // If search movie in searchBox, it will be redirect homepage
+        if (this.props.data_loaded) {
+            this.props.history.push('/');
+        }
+    }
+    
+    componentWillReceiveProps(nextProps){
+        // If search movie in searchBox, it will be redirect homepage
+        if(nextProps.data_loaded) {
+          this.props.history.push('/')
+        }
+        if(nextProps.errors){
+          console.warn(nextProps.errors)
+        }
     }
     render() {
         let movieDataShow;
@@ -45,9 +61,10 @@ class FilmsContainer extends Component {
 
 export default connect(
     (state) => ({
-        moviedatas: state.films.data
+        moviedatas: state.films.data,
+        data_loaded: state.search_movie.data_loaded
     }),
     (dispatch) => ({
         PostActions: bindActionCreators(postActions, dispatch)
     })
-)(FilmsContainer);
+)(withRouter(FilmsContainer));

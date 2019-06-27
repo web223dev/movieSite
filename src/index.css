@@ -228,8 +228,9 @@ code {
   z-index: 5;
   position: absolute;
   left: 0;
-  padding-left: 50px;
+  padding-left: 16px;
   padding-top: 5rem;
+  margin-left: 12rem;
 }
 .hero-wrapper .title-logo{
   width: 500px;

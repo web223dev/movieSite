@@ -17,8 +17,14 @@ class MovieDetailContainer extends Component {
         const id = this.props.location.pathname.substring(7);
         PostActions.getMovieDetail(id);
         SimilarMovieActions.getSimilarMovie(id);
+        
+        // If search movie in searchBox, it will be redirect homepage
+        if (this.props.data_loaded) {
+            this.props.history.push('/');
+        }
     }
     componentDidUpdate(prevProps) {
+        //In MovieDetail page, when you click similar movie, it will be render current page again.
         const { PostActions, SimilarMovieActions } = this.props;
         const id = this.props.location.pathname.substring(7)
         const prev_id = prevProps.location.pathname.substring(7)
@@ -27,8 +33,17 @@ class MovieDetailContainer extends Component {
             SimilarMovieActions.getSimilarMovie(id);
         }
     }
+    componentWillReceiveProps(nextProps){
+        // If search movie in searchBox, it will be redirect homepage
+        if(nextProps.data_loaded) {
+          this.props.history.push('/')
+        }
+        if(nextProps.errors){
+          console.warn(nextProps.errors)
+        }
+    }
     render() {
-        let SimilarMovies;
+        let SimilarMovies; 
         const { moviedata, similar_movies } = this.props;
         const sm_movies = similar_movies.results;
         // const settings = {
@@ -99,7 +114,8 @@ class MovieDetailContainer extends Component {
 export default connect(
     (state) => ({
         moviedata: state.moviedetail.data,
-        similar_movies: state.similar.data
+        similar_movies: state.similar.data,
+        data_loaded: state.search_movie.data_loaded
     }),
     (dispatch) => ({
         PostActions: bindActionCreators(postActions, dispatch),

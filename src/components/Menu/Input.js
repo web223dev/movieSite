@@ -13,9 +13,9 @@ class Input extends Component {
             searchTerm: ''
         }
     }
-    
+
     handleChange = (e) => {
-        this.setState({searchTerm : e.target.value});    
+        this.setState({ searchTerm: e.target.value });
     }
     handleKeyUp = (e) => {
         const { SearchActions } = this.props;
@@ -23,10 +23,10 @@ class Input extends Component {
         if (e.key === 'Enter' && this.state.searchTerm !== '') {
             SearchActions.getSearchedMovie(searchTerm);
         }
-    }
+    }    
     render() {
-        const  { searchTerm } = this.state; 
-        const  { handleChange, handleKeyUp } = this;
+        const { searchTerm } = this.state;
+        const { handleChange, handleKeyUp } = this;
         return (
             <div id="menuinput-wrap">
                 <div className="search_wrap">
@@ -41,7 +41,7 @@ class Input extends Component {
 
 export default connect(
     (state) => ({
-        searched_movie: state.search_movie.data,
+        data_loaded: state.search_movie.data_loaded
     }),
     (dispatch) => ({
         SearchActions: bindActionCreators(searchActions, dispatch)

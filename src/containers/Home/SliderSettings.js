@@ -3,7 +3,6 @@ const settings = {
     speed: 700,
     slidesToScroll: 6,
     slidesToShow: 6,
-    initialSlide: 0,
     responsive: [
         {
             breakpoint: 1900,
