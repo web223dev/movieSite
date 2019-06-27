@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 import * as postActions from 'modules/home/post';
 import Slider from "react-slick";
 import MovieSection from 'components/MovieSection';
@@ -12,7 +13,6 @@ class TitleList extends Component {
         const { PostActions, urlString } = this.props; //console.log(urlString);
         if (nextProps.urlString !== urlString && nextProps.urlString !== "") {
             PostActions.getMovie(nextProps.urlString);
-            console.log('11')
         }
     }
     componentDidMount() {
@@ -23,13 +23,8 @@ class TitleList extends Component {
     }
     render() {
         let movieDataShow, searchedMovieShow;
-        const { title, moviedatas, sectionId, searched_movie, data_loaded } = this.props; //console.log("tl", moviedatas.toJS());        
-        // if (title === 'Search Result' && searched_movie.length !== 0) {
-        //     console.log('1')
-        //     console.log(data_loaded);
-        // } else {
-        //     console.log('2')
-        // }
+        const { title, moviedatas, sectionId, searched_movie, data_loaded } = this.props; //console.log("tl", moviedatas.toJS());  
+        console.log(data_loaded);      
         if (title==='Search Result' && searched_movie.length !== 0) {
             const searchedMovies = searched_movie.results;
             searchedMovieShow = searchedMovies.map((searchedMovie, i) => {
@@ -81,4 +76,4 @@ export default connect(
     (dispatch) => ({
         PostActions: bindActionCreators(postActions, dispatch)
     })
-)(TitleList);
+)(withRouter(TitleList));

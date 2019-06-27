@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import * as postActions from 'modules/moviedetail/post';
 import * as similarMovieActions from 'modules/moviedetail/similar';
 import Daredevil from 'assets/images/Logos/Daredevil.png';
 import Slider from "react-slick";
-// import settings from 'containers/Home/SliderSettings';
+import settings from './detailSliderSettings';
 import MovieSection from 'components/MovieSection';
 import StarRatings from 'react-star-ratings';
 import ConvertImage from 'components/ConvertImage';
+import { withSize } from 'react-sizeme'
 
 class MovieDetailContainer extends Component {
     componentDidMount() {
@@ -17,7 +18,7 @@ class MovieDetailContainer extends Component {
         const id = this.props.location.pathname.substring(7);
         PostActions.getMovieDetail(id);
         SimilarMovieActions.getSimilarMovie(id);
-        
+
         // If search movie in searchBox, it will be redirect homepage
         if (this.props.data_loaded) {
             this.props.history.push('/');
@@ -33,27 +34,19 @@ class MovieDetailContainer extends Component {
             SimilarMovieActions.getSimilarMovie(id);
         }
     }
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         // If search movie in searchBox, it will be redirect homepage
-        if(nextProps.data_loaded) {
-          this.props.history.push('/')
+        if (nextProps.data_loaded) {
+            this.props.history.push('/')
         }
-        if(nextProps.errors){
-          console.warn(nextProps.errors)
+        if (nextProps.errors) {
+            console.warn(nextProps.errors)
         }
     }
     render() {
-        let SimilarMovies; 
-        const { moviedata, similar_movies } = this.props;
-        const sm_movies = similar_movies.results;
-        const settings = {
-            infinite: false,
-            speed: 700,
-            slidesToScroll: 8,
-            slidesToShow: 8,
-            initialSlide: 0,
-        };
-
+        let SimilarMovies;
+        const { moviedata, similar_movies, size } = this.props;
+        const sm_movies = similar_movies.results; 
 
         if (moviedata.backdrop_path)
             var bgImg = ConvertImage('original', moviedata.backdrop_path);
@@ -110,15 +103,20 @@ class MovieDetailContainer extends Component {
         );
     }
 }
-
-export default connect(
-    (state) => ({
-        moviedata: state.moviedetail.data,
-        similar_movies: state.similar.data,
-        data_loaded: state.search_movie.data_loaded
-    }),
-    (dispatch) => ({
-        PostActions: bindActionCreators(postActions, dispatch),
-        SimilarMovieActions: bindActionCreators(similarMovieActions, dispatch)
-    })
-)(withRouter(MovieDetailContainer));
+const composedMovieDetailContainer = compose(
+    withRouter,
+    withSize(),
+    connect(
+        (state) => ({
+            moviedata: state.moviedetail.data,
+            similar_movies: state.similar.data,
+            data_loaded: state.search_movie.data_loaded
+        }),
+        (dispatch) => ({
+            PostActions: bindActionCreators(postActions, dispatch),
+            SimilarMovieActions: bindActionCreators(similarMovieActions, dispatch)
+        })
+    ),
+)
+    
+export default composedMovieDetailContainer(MovieDetailContainer);

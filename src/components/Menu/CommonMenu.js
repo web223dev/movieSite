@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 class CommonMenu extends Component {
     render() {
         const { toggleDropdown, toggle, dropdownOpen, isOpen, pathname } = this.props;
         return (
-            <Navbar light expand="md">
+            <Navbar light expand="lg">
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav navbar>
@@ -18,7 +19,7 @@ class CommonMenu extends Component {
                                 onMouseOver={toggleDropdown}
                                 style={{ borderColor: (pathname === '/tv-programmes/dramas' || pathname === "/tv-programmes/entertainment" || pathname === "/tv-programmes/news") && 'rgb(184, 19, 13)' }} nav caret>
                                 TV Programmes
-                                </DropdownToggle>
+                            </DropdownToggle>
                             <DropdownMenu left="true">
                                 <div className="triangle"></div>
                                 <DropdownItem>
@@ -41,7 +42,7 @@ class CommonMenu extends Component {
                         <NavItem>
                             <NavLink href="/recently-added" style={{ borderColor: pathname === '/recently-added' && 'rgb(184, 19, 13)' }}>Recently Added</NavLink>
                         </NavItem>
-                    </Nav>
+                    </Nav>                    
                 </Collapse>
             </Navbar>
         );

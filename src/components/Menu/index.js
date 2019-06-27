@@ -37,7 +37,7 @@ class Menu extends Component {
                 isOpen={isOpen}
                 pathname={pathname}
               />  
-              <Input />            
+              <Input />
             </div>
         );
     }
