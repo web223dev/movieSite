@@ -27,9 +27,9 @@ export const getSimilarTV = (id) => dispatch => {
     return getSimilarTV_API(id).then(res => {
         dispatch(receiveTV(res.data))
     })
-        .catch(err => {
-            dispatch(falidReceiveTV(err))
-        })
+    .catch(err => {
+        dispatch(falidReceiveTV(err))
+    })
 }
 
 const initialState = {

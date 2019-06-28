@@ -7,16 +7,24 @@ import * as similarTVActions from 'modules/tvdetail/similartv';
 import Daredevil from 'assets/images/Logos/Daredevil.png';
 import Slider from "react-slick";
 import settings from 'containers/MovieDetail/detailSliderSettings';
-import MovieSection from 'components/MovieSection';
+import TVSection from 'components/TVSection';
 import StarRatings from 'react-star-ratings';
 import ConvertImage from 'components/ConvertImage';
 
 class TVDetailContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            episodes_count: this.props
+        }
+    }
+
     componentDidMount() {
         const { DramaActions, SimilarTVActions } = this.props;
-        const id = this.props.location.pathname.substring(4); 
+        const id = this.props.location.pathname.substring(4);
         DramaActions.getDramaDetail(id);
         SimilarTVActions.getSimilarTV(id);
+        console.log('1')
 
         // If search movie in searchBox, it will be redirect homepage
         if (this.props.data_loaded) {
@@ -25,12 +33,15 @@ class TVDetailContainer extends Component {
     }
     componentDidUpdate(prevProps) {
         //In MovieDetail page, when you click similar movie, it will be render current page again.
-        const { DramaActions, SimilarTVActions } = this.props;        
+        const { DramaActions, SimilarTVActions, similar_tv, episode_num } = this.props;
         const id = this.props.location.pathname.substring(4)
         const prev_id = prevProps.location.pathname.substring(4)
         if (id !== prev_id) {
+            const similarTV_length = similar_tv.results.length; console.log(episode_num.length)
             DramaActions.getDramaDetail(id);
             SimilarTVActions.getSimilarTV(id);
+            similar_tv.results.map((sm_tv) => DramaActions.getDramaEpisodes(sm_tv.id))
+            console.log('2');
         }
     }
     componentWillReceiveProps(nextProps) {
@@ -44,22 +55,26 @@ class TVDetailContainer extends Component {
     }
     render() {
         let SimilarTVs;
-        const { dramadata, similar_tv } = this.props; //console.log(dramadata);
-        const sm_tvs = similar_tv.results; 
+        const { dramadata, similar_tv, episode_num } = this.props; //console.log(dramadata);
+        const sm_tvs = similar_tv.results; //console.log(episode_num);
 
         if (dramadata.backdrop_path)
             var bgImg = ConvertImage('original', dramadata.backdrop_path);
 
+        console.log(episode_num)
         if (sm_tvs) {
             SimilarTVs = sm_tvs.map((smilar_tv, i) => {
+                console.log("aaa");
                 if (smilar_tv.poster_path)
                     var smImg = ConvertImage(500, smilar_tv.poster_path);
                 return (
-                    <MovieSection
+                    <TVSection
                         mdetail={smilar_tv}
                         bgImg={smImg}
                         pagename="movieDetail"
                         category="tv"
+                        episodeNum={episode_num}
+                        id={i}
                         key={i}
                     />
                 )
@@ -84,7 +99,7 @@ class TVDetailContainer extends Component {
                             />
                             <div className="date_duration">
                                 <span className="release-date">{dramadata.first_air_date}</span>
-                                <span className="duration">1 Seasons</span>
+                                <span className="duration">{dramadata.number_of_seasons} Seasons</span>
                             </div>
                         </div>
                         <div className="btn-group-vertical movie-link-buttons">
@@ -107,6 +122,7 @@ export default connect(
     (state) => ({
         dramadata: state.tvdetail.data,
         similar_tv: state.similartv.data,
+        episode_num: state.tvdetail.episodes_count,
         data_loaded: state.search_movie.data_loaded
     }),
     (dispatch) => ({

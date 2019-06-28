@@ -23,11 +23,13 @@ class MovieDetailContainer extends Component {
             this.props.history.push('/');
         }
     }
+    
     componentDidUpdate(prevProps) {
         //In MovieDetail page, when you click similar movie, it will be render current page again.
         const { PostActions, SimilarMovieActions } = this.props;
         const id = this.props.location.pathname.substring(7)
         const prev_id = prevProps.location.pathname.substring(7)
+        // console.log(id ,",", prev_id);
         if (id !== prev_id) {
             PostActions.getMovieDetail(id);
             SimilarMovieActions.getSimilarMovie(id);
@@ -45,7 +47,7 @@ class MovieDetailContainer extends Component {
     render() {
         let SimilarMovies;
         const { moviedata, similar_movies } = this.props;
-        const sm_movies = similar_movies.results; 
+        const sm_movies = similar_movies.results;
 
         if (moviedata.backdrop_path)
             var bgImg = ConvertImage('original', moviedata.backdrop_path);
