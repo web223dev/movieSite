@@ -6,6 +6,7 @@ import Films from 'views/Films';
 import Originals from 'views/Originals';
 import RecentlyAdded from 'views/RecentlyAdded';
 import MovieDetail from 'views/MovieDetail';
+import TVDetail from 'views/TVDetail';
 
 const dashboardRoutes = [
     {
@@ -17,6 +18,11 @@ const dashboardRoutes = [
         path:"/movie/:id",
         name: "MovieDetail",
         component: MovieDetail
+    },
+    {
+        path:"/tv/:id",
+        name: "TVDetail",
+        component: TVDetail
     },
     {
         path: "/tv-programmes/dramas",
