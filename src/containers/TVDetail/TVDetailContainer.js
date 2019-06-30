@@ -30,18 +30,17 @@ class TVDetailContainer extends Component {
         if (this.props.data_loaded) {
             this.props.history.push('/');
         }
+        // if (similar_tv.results)
+        //     similar_tv.results.map((sm_tv) => DramaActions.getDramaEpisodes(sm_tv.id))
     }
     componentDidUpdate(prevProps) {
         //In MovieDetail page, when you click similar movie, it will be render current page again.
-        const { DramaActions, SimilarTVActions, similar_tv, episode_num } = this.props;
+        const { DramaActions, SimilarTVActions } = this.props;
         const id = this.props.location.pathname.substring(4)
         const prev_id = prevProps.location.pathname.substring(4)
-        if (id !== prev_id) {
-            const similarTV_length = similar_tv.results.length; console.log(episode_num.length)
+        if (id !== prev_id) {            
             DramaActions.getDramaDetail(id);
             SimilarTVActions.getSimilarTV(id);
-            similar_tv.results.map((sm_tv) => DramaActions.getDramaEpisodes(sm_tv.id))
-            console.log('2');
         }
     }
     componentWillReceiveProps(nextProps) {
@@ -55,16 +54,16 @@ class TVDetailContainer extends Component {
     }
     render() {
         let SimilarTVs;
-        const { dramadata, similar_tv, episode_num } = this.props; //console.log(dramadata);
+        const { dramadata, similar_tv } = this.props; //console.log(dramadata);
         const sm_tvs = similar_tv.results; //console.log(episode_num);
 
         if (dramadata.backdrop_path)
             var bgImg = ConvertImage('original', dramadata.backdrop_path);
 
-        console.log(episode_num)
+        // console.log(episode_num)
         if (sm_tvs) {
             SimilarTVs = sm_tvs.map((smilar_tv, i) => {
-                console.log("aaa");
+                
                 if (smilar_tv.poster_path)
                     var smImg = ConvertImage(500, smilar_tv.poster_path);
                 return (
@@ -73,8 +72,6 @@ class TVDetailContainer extends Component {
                         bgImg={smImg}
                         pagename="movieDetail"
                         category="tv"
-                        episodeNum={episode_num}
-                        id={i}
                         key={i}
                     />
                 )
@@ -122,7 +119,6 @@ export default connect(
     (state) => ({
         dramadata: state.tvdetail.data,
         similar_tv: state.similartv.data,
-        episode_num: state.tvdetail.episodes_count,
         data_loaded: state.search_movie.data_loaded
     }),
     (dispatch) => ({

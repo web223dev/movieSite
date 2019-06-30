@@ -23,24 +23,24 @@ class CommonMenu extends Component {
                             <DropdownMenu left="true">
                                 <div className="triangle"></div>
                                 <DropdownItem>
-                                    <NavLink href="/tv-programmes/dramas">Dramas</NavLink>
+                                    <NavLink href="/#/tv-programmes/dramas">Dramas</NavLink>
                                 </DropdownItem>
                                 <DropdownItem>
-                                    <NavLink href="/tv-programmes/entertainment">Entertainment / Current affairs</NavLink>
+                                    <NavLink href="/#/tv-programmes/entertainment">Entertainment / Current affairs</NavLink>
                                 </DropdownItem>
                                 <DropdownItem>
-                                    <NavLink href="/tv-programmes/news">News</NavLink>
+                                    <NavLink href="/#/tv-programmes/news">News</NavLink>
                                 </DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                         <NavItem>
-                            <NavLink href="/films" style={{ borderColor: pathname === '/films' && 'rgb(184, 19, 13)' }}>Films</NavLink>
+                            <NavLink href="/#/films" style={{ borderColor: pathname === '/films' && 'rgb(184, 19, 13)' }}>Films</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/originals" style={{ borderColor: pathname === '/originals' && 'rgb(184, 19, 13)' }}>Originals</NavLink>
+                            <NavLink href="/#/originals" style={{ borderColor: pathname === '/originals' && 'rgb(184, 19, 13)' }}>Originals</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/recently-added" style={{ borderColor: pathname === '/recently-added' && 'rgb(184, 19, 13)' }}>Recently Added</NavLink>
+                            <NavLink href="/#/recently-added" style={{ borderColor: pathname === '/recently-added' && 'rgb(184, 19, 13)' }}>Recently Added</NavLink>
                         </NavItem>
                     </Nav>                    
                 </Collapse>

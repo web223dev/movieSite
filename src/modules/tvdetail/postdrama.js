@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_DRAMA_PENDING, GET_DRAMA_SUCCESS, GET_DRAMA_FAILURE, GET_DRAMA_EPISODES_SUCCESS } from './type';
+import { GET_DRAMA_PENDING, GET_DRAMA_SUCCESS, GET_DRAMA_FAILURE } from './type';
 
 const apiKey = '87dfa1c669eea853da609d4968d294be';
 
@@ -13,11 +13,6 @@ export const requestTV = () => ({
 
 export const receiveTV = data => ({
   type: GET_DRAMA_SUCCESS,
-  payload: data
-})
-
-export const receiveTV_Episodes = data => ({
-  type: GET_DRAMA_EPISODES_SUCCESS,
   payload: data
 })
 
@@ -35,15 +30,3 @@ export const getDramaDetail = (id) => dispatch => {
     dispatch(falidReceiveTV(err))
   })
 }
-
-export const getDramaEpisodes = (similar_tv_id) => dispatch => {
-  dispatch(requestTV());
-  // console.log(similar_tv_id)
-  return getDramaDetailAPI(similar_tv_id).then(res => {
-    dispatch(receiveTV_Episodes(res.data.number_of_episodes))
-  })
-  .catch(err => {
-    dispatch(falidReceiveTV(err))
-  })
-}
-
