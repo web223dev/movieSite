@@ -7,7 +7,7 @@ import * as similarTVActions from 'modules/tvdetail/similartv';
 import Daredevil from 'assets/images/Logos/Daredevil.png';
 import Slider from "react-slick";
 import settings from 'containers/MovieDetail/detailSliderSettings';
-import TVSection from 'components/TVSection';
+import MovieSection from 'components/MovieSection';
 import StarRatings from 'react-star-ratings';
 import ConvertImage from 'components/ConvertImage';
 
@@ -66,7 +66,7 @@ class TVDetailContainer extends Component {
                 if (smilar_tv.poster_path)
                     var smImg = ConvertImage(500, smilar_tv.poster_path);
                 return (
-                    <TVSection
+                    <MovieSection
                         mdetail={smilar_tv}
                         bgImg={smImg}
                         pagename="movieDetail"
