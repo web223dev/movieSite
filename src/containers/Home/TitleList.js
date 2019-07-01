@@ -10,13 +10,13 @@ import ConvertImage from 'components/ConvertImage';
 
 class TitleList extends Component {
     componentWillReceiveProps(nextProps) {
-        const { PostActions, urlString } = this.props; //console.log(urlString);
+        const { PostActions, urlString } = this.props; 
         if (nextProps.urlString !== urlString && nextProps.urlString !== "") {
             PostActions.getMovie(nextProps.urlString);
         }
     }
     componentDidMount() {
-        const { urlString, PostActions } = this.props;// console.log(urlString);
+        const { urlString, PostActions } = this.props;
         if (urlString !== "") {
             PostActions.getMovie(urlString);
         }
@@ -24,7 +24,7 @@ class TitleList extends Component {
     render() {
         let movieDataShow, searchedMovieShow;
         const { title, moviedatas, sectionId, searched_movie, data_loaded } = this.props; //console.log("tl", moviedatas.toJS());  
-        console.log(data_loaded);      
+
         if (title==='Search Result' && searched_movie.length !== 0) {
             const searchedMovies = searched_movie.results;
             searchedMovieShow = searchedMovies.map((searchedMovie, i) => {

@@ -7,6 +7,7 @@ import Originals from 'views/Originals';
 import RecentlyAdded from 'views/RecentlyAdded';
 import MovieDetail from 'views/MovieDetail';
 import TVDetail from 'views/TVDetail';
+import Watch from 'views/Watch';
 
 const dashboardRoutes = [
     {
@@ -53,6 +54,11 @@ const dashboardRoutes = [
         path: "/recently-added",
         name: "Recently Added",
         component: RecentlyAdded
+    },
+    {
+        path: "/watch",
+        name: "Watch",
+        component: Watch
     }
 ];
 

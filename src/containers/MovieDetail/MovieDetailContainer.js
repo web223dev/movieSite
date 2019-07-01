@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import * as postActions from 'modules/moviedetail/post';
 import * as similarMovieActions from 'modules/moviedetail/similar';
 import Daredevil from 'assets/images/Logos/Daredevil.png';
@@ -89,9 +89,9 @@ class MovieDetailContainer extends Component {
                             </div>
                         </div>
                         <div className="btn-group-vertical movie-link-buttons">
-                            <button type="button" className="btn btn-primary">OPENLOAD</button>
-                            <button type="button" className="btn btn-success">STREAMANGO</button>
-                            <button type="button" className="btn btn-danger">MOVHARPOON</button>
+                            <Link to="/watch" className="btn btn-primary">OPENLOAD</Link>
+                            <Link to="/watch" className="btn btn-success">STREAMANGO</Link>
+                            <Link to="/watch" className="btn btn-danger">MOVHARPOON</Link>
                         </div>
                     </div>
                 </section>

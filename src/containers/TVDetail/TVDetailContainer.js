@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import * as dramaActions from 'modules/tvdetail/postdrama';
 import * as similarTVActions from 'modules/tvdetail/similartv';
 import Daredevil from 'assets/images/Logos/Daredevil.png';
@@ -24,7 +24,6 @@ class TVDetailContainer extends Component {
         const id = this.props.location.pathname.substring(4);
         DramaActions.getDramaDetail(id);
         SimilarTVActions.getSimilarTV(id);
-        console.log('1')
 
         // If search movie in searchBox, it will be redirect homepage
         if (this.props.data_loaded) {
@@ -100,9 +99,9 @@ class TVDetailContainer extends Component {
                             </div>
                         </div>
                         <div className="btn-group-vertical movie-link-buttons">
-                            <button type="button" className="btn btn-primary">OPENLOAD</button>
-                            <button type="button" className="btn btn-success">STREAMANGO</button>
-                            <button type="button" className="btn btn-danger">MOVHARPOON</button>
+                            <Link to="/watch" className="btn btn-primary">OPENLOAD</Link>
+                            <Link to="/watch" className="btn btn-success">STREAMANGO</Link>
+                            <Link to="/watch" className="btn btn-danger">MOVHARPOON</Link>
                         </div>
                     </div>
                 </section>

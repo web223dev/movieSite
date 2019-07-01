@@ -21,6 +21,7 @@ import "rc-menu/assets/index.css";
 
 import './index.css';
 
+
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 
 ReactDOM.render(

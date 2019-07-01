@@ -288,6 +288,12 @@ code {
   margin: 0;
 }
 
+/* Watch Page */
+#my-jw-player-instance {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 /* Responsive */
 @media (max-width: 1279px){
   .menu-content .navbar-nav{
