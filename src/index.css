@@ -160,6 +160,7 @@ code {
 }
 .movie-section .episodes{
   position: absolute;
+  transform: translate(8%, -50%);
   bottom: 2em;
   left: 2em;
   width: 130px;
@@ -307,6 +308,11 @@ code {
   }
   .hero-wrapper{
     margin-left: 6rem;
+  }
+}
+@media (max-width: 920px){
+  .movie-section .movielink img{
+    width: auto;
   }
 }
 @media (max-width: 768px){
