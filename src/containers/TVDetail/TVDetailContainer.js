@@ -29,9 +29,8 @@ class TVDetailContainer extends Component {
         if (this.props.data_loaded) {
             this.props.history.push('/');
         }
-        // if (similar_tv.results)
-        //     similar_tv.results.map((sm_tv) => DramaActions.getDramaEpisodes(sm_tv.id))
     }
+
     componentDidUpdate(prevProps) {
         //In MovieDetail page, when you click similar movie, it will be render current page again.
         const { DramaActions, SimilarTVActions } = this.props;
@@ -53,13 +52,12 @@ class TVDetailContainer extends Component {
     }
     render() {
         let SimilarTVs;
-        const { dramadata, similar_tv } = this.props; //console.log(dramadata);
-        const sm_tvs = similar_tv.results; //console.log(episode_num);
+        const { dramadata, similar_tv } = this.props;
+        const sm_tvs = similar_tv.results;
 
         if (dramadata.backdrop_path)
             var bgImg = ConvertImage('original', dramadata.backdrop_path);
 
-        // console.log(episode_num)
         if (sm_tvs) {
             SimilarTVs = sm_tvs.map((smilar_tv, i) => {
                 
@@ -85,7 +83,10 @@ class TVDetailContainer extends Component {
                     <div className="hero-wrapper">
                         <div className="hero-header">
                             <img className="title-logo" src={Daredevil} alt="Daredevil" />
-                            <div>{dramadata.original_name}</div>
+                            <div>
+                                {/* <span>{dramadata.original_name}</span> */}
+                                <span>{dramadata.number_of_episodes} Episodes</span>
+                            </div>
                             <StarRatings
                                 rating={current_rating}
                                 starRatedColor='#b11b1b'

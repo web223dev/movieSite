@@ -133,24 +133,6 @@ code {
   background: transparent !important;
   color: #fff !important;
 }
-/* #menuinput-wrap input[type="submit"] {
-  height: 50px;
-  width: 42px;
-  display: inline-block;
-  color:red;
-  float: right;
-  background: transparent;
-  text-indent: -10000px;
-  border: none;
-  position: absolute;
-  top: 0;
-  right: 44px;
-  z-index: 2;
-  cursor: pointer;
-  opacity: 0.4;
-  cursor: pointer;
-  transition: opacity .4s ease;
-} */
 
 #menuinput-wrap input[type="submit"]:hover {
   opacity: 0.8;
@@ -168,10 +150,22 @@ code {
 .movie-section{
   margin: 0 6px;
 }
+.movie-section .movielink{
+  position: relative;
+}
 .movie-section .movielink img{
   /* width: 100%;
   height: 100% */
   margin: 0 auto;
+}
+.movie-section .episodes{
+  position: absolute;
+  bottom: 2em;
+  left: 2em;
+  width: 130px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #ad1a1a;
 }
 /* Page Header */
 .pg-collections-header {
@@ -278,10 +272,6 @@ code {
 .mdtitle-wrapper .duration{
   padding-left: 20px;
 }
-/* .mdtitle-wrapper .movie-section .movielink img{
-  width: auto;
-  height: auto;
-} */
 
 /* Films Page */
 .films .movie-section{

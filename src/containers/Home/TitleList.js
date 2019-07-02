@@ -23,7 +23,7 @@ class TitleList extends Component {
     }
     render() {
         let movieDataShow, searchedMovieShow;
-        const { title, moviedatas, sectionId, searched_movie, data_loaded } = this.props; //console.log("tl", moviedatas.toJS());  
+        const { title, moviedatas, sectionId, searched_movie, data_loaded } = this.props;
 
         if (title==='Search Result' && searched_movie.length !== 0) {
             const searchedMovies = searched_movie.results;

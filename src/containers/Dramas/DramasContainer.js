@@ -30,7 +30,7 @@ class FilmsContainer extends Component {
     }
     render() {
         let dramaDataShow;
-        const { dramadatas } = this.props; //console.log("drama", dramadatas.results);   
+        const { dramadatas } = this.props;
         const ddatas = dramadatas.results;
         if (ddatas !== undefined) {
             dramaDataShow = ddatas.map((ddata, i) => {

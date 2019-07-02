@@ -29,7 +29,7 @@ class MovieDetailContainer extends Component {
         const { PostActions, SimilarMovieActions } = this.props;
         const id = this.props.location.pathname.substring(7)
         const prev_id = prevProps.location.pathname.substring(7)
-        // console.log(id ,",", prev_id);
+        
         if (id !== prev_id) {
             PostActions.getMovieDetail(id);
             SimilarMovieActions.getSimilarMovie(id);
