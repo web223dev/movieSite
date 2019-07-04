@@ -219,7 +219,7 @@ code {
 }
 #section-hero {
   padding: 0px 4vw 30px;
-  min-height: 52vh;
+  min-height: 60vh;
   max-width: 66%;
   margin-left: auto;
 }
@@ -229,7 +229,7 @@ code {
   top: 0;
   right: 0;
   left: 34%;
-  height: 52vh;
+  height: 60vh;
   z-index: 2;
 }
 .hero-wrapper{
@@ -237,8 +237,8 @@ code {
   position: absolute;
   left: 0;
   padding-left: 16px;
-  padding-top: 5rem;
-  margin-left: 12rem;
+  padding-top: 8%;
+  margin-left: 10%;
 }
 .hero-wrapper .title-logo{
   width: 500px;
@@ -294,6 +294,7 @@ code {
     margin-right: 4em;
   }
 }
+
 @media (min-width: 1024px){
   .navbar-expand-md .navbar-toggler {
     display: none;
@@ -306,8 +307,24 @@ code {
   .dropdown-menu{
     border-top: transparent;
   }
-  .hero-wrapper{
-    margin-left: 6rem;
+}
+@media (max-width: 1023px) and (orientation:landscape){
+  #section-hero {
+    min-height: 128vh;
+  }
+  .left-gradient-overlay{
+    height: 128vh;
+  }
+}
+@media (max-width: 1024px) and (orientation:portrait){
+  #section-hero {
+    min-height: 60vh;
+  }
+  .left-gradient-overlay{
+    height: 60vh;
+  }
+  .hero-wrapper {
+    padding-top: 16%;
   }
 }
 @media (max-width: 920px){
@@ -324,12 +341,29 @@ code {
     left: 0
   }
 }
+@media (max-width: 680px) and (orientation:portrait){
+  #section-hero {
+    min-height: 76vh;
+  }
+  .left-gradient-overlay{
+    height: 76vh;
+  }
+}
 @media (max-width: 612px){
   .hero-wrapper .title-logo{
     width: 70vw;
     height: 16vw;
   }
 }
+@media (max-width: 612px) and (orientation:landscape){
+  #section-hero {
+    min-height: 126vh;
+  }
+  .left-gradient-overlay{
+    height: 126vh;
+  }
+}
+
 @media (max-width: 520px){
   #menuinput-wrap {
     margin-right: 1em;
@@ -342,7 +376,6 @@ code {
   }
   .hero-wrapper{
     margin-left: 0;
-    padding: 5em 0;
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%)
@@ -354,8 +387,31 @@ code {
     padding-left: 0;
   }
 }
+@media (max-width: 416px){
+  .collections-container{
+    margin: 10px 2px;
+  }
+}
+@media (max-width: 411px) and (orientation:portrait){
+  #section-hero {
+    min-height: 66vh;
+  }
+  .left-gradient-overlay{
+    height: 66vh;
+  }
+}
+
 @media (max-width: 370px){
   #menuinput-wrap input[type="text"]:focus{
     width: 9em;
+  }
+}
+
+@media (max-width: 350px) and (orientation:portrait){
+  #section-hero {
+    min-height: 74vh;
+  }
+  .left-gradient-overlay{
+    height: 74vh;
   }
 }
