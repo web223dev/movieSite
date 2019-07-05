@@ -3,7 +3,7 @@ import { GET_MOVIE_PENDING, GET_MOVIE_SUCCESS, GET_MOVIE_FAILURE } from './type'
 
 const apiKey = '87dfa1c669eea853da609d4968d294be';
 
-function getPopularMovieAPI() {
+function getPopularMovieAPI(page) {
   let todayDate = new Date();
   let today = todayDate.getFullYear() + '-' + (todayDate.getMonth() + 1) + '-' + todayDate.getDate();
   let oneMonthAgo = (todayDate.getMonth() === 0 ? todayDate.getFullYear() - 1 : todayDate.getFullYear()) + '-' + (todayDate.getMonth() === 0 ? todayDate.getMonth() + 12 : todayDate.getMonth()) + '-' + todayDate.getDate(); 
@@ -11,8 +11,9 @@ function getPopularMovieAPI() {
   // return axios.get(`https://api.themoviedb.org/3/discover/tv?with_genres=18&sort_by=vote_average.desc&vote_count.gte=10&api_key=${apiKey}`)
 }
 
-export const requestMovie = () => ({
-  type: GET_MOVIE_PENDING
+export const requestMovie = (page) => ({
+  type: GET_MOVIE_PENDING,
+  payload: page
 })
 
 export const receiveMovie = data => ({
@@ -25,9 +26,9 @@ export const falidReceiveMovie = error => ({
   payload: error
 })
 
-export const getPopularMovie = () => dispatch => {
+export const getPopularMovie = (page) => dispatch => {
   dispatch(requestMovie());
-  return getPopularMovieAPI().then(res => {
+  return getPopularMovieAPI(page).then(res => {
     dispatch(receiveMovie(res.data))
   })
     .catch(err => {

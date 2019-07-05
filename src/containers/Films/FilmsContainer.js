@@ -9,23 +9,53 @@ import MovieSection from 'components/MovieSection';
 import ConvertImage from 'components/ConvertImage';
 
 class FilmsContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentPage: 1,
+            currentMovies: []
+        };
+        // Binds the handleScroll to this class (MovieBrowser)
+        // which provides access to MovieBrowser's props
+        // Note: You don't have to do this if you call a method
+        // directly from a lifecycle method
+        this.handleScroll = this.handleScroll.bind(this);
+    }
     componentDidMount() {
-        const { PostActions,  } = this.props;
-        PostActions.getPopularMovie();
+        const { PostActions } = this.props;
+
+        window.onscroll = this.handleScroll;
+        PostActions.getPopularMovie(this.state.currentPage);
 
         // If search movie in searchBox, it will be redirect homepage
         if (this.props.data_loaded) {
             this.props.history.push('/');
         }
     }
-    
-    componentWillReceiveProps(nextProps){
+
+    componentWillReceiveProps(nextProps) {
         // If search movie in searchBox, it will be redirect homepage
-        if(nextProps.data_loaded) {
-          this.props.history.push('/')
+        if (nextProps.data_loaded) {
+            this.props.history.push('/')
         }
-        if(nextProps.errors){
-          console.warn(nextProps.errors)
+        if (nextProps.errors) {
+            console.warn(nextProps.errors)
+        }
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll() {
+        const { PostActions, isLoading } = this.props;
+        if (!isLoading) {
+            let percentageScrolled = scrollHelpers.getPercentageScrolledDown(window);
+            if (percentageScrolled > .8) {
+                const nextPage = this.state.currentPage + 1;
+                PostActions(nextPage);
+                this.setState({ currentPage: nextPage });
+            }
         }
     }
     render() {
@@ -63,6 +93,7 @@ class FilmsContainer extends Component {
 export default connect(
     (state) => ({
         moviedatas: state.films.data,
+        isLoading: state.films.pending,
         data_loaded: state.search_movie.data_loaded
     }),
     (dispatch) => ({
