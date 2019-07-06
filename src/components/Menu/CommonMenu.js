@@ -24,7 +24,7 @@ class CommonMenu extends Component {
     }
     render() {
         const { pathname, size } = this.props;
-        const { isOpen } = this.state;
+        const { isOpen, dropdownOpen } = this.state;
         const { toggleDropdown, toggle } = this;
         var width = size.width;
         return (
@@ -36,9 +36,9 @@ class CommonMenu extends Component {
                             <NavLink href="/#/" onClick={toggle} style={{ borderColor: pathname === '/' && 'rgb(184, 19, 13)' }}>Home</NavLink>
                         </NavItem>
 
-                        <Dropdown isOpen={width > 991 ? false : true} toggle={toggleDropdown} nav inNavbar>
+                        <Dropdown isOpen={width > 991 ? dropdownOpen : true} toggle={toggleDropdown} nav inNavbar>
                             <DropdownToggle
-                                onClick={toggleDropdown}
+                                onMouseOver={toggleDropdown}
                                 style={{ borderColor: (pathname === '/tv-programmes/dramas' || pathname === "/tv-programmes/entertainment" || pathname === "/tv-programmes/news") && 'rgb(184, 19, 13)' }} nav caret>
                                 TV Programmes
                             </DropdownToggle>
