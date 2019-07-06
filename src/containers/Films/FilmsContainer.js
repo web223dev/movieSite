@@ -55,9 +55,10 @@ class FilmsContainer extends Component {
             let percentageScrolled = scrollHelpers.getPercentageScrolledDown(window);
             if (percentageScrolled > .8) {
                 const nextPage = this.state.currentPage + 1;
-                // if(nextPage > 100)
-                PostActions.getPopularMovie(nextPage);
-                this.setState({ currentPage: nextPage });
+                if (nextPage < 10) {
+                    PostActions.getPopularMovie(nextPage);
+                    this.setState({ currentPage: nextPage });
+                }
             }
         }
     }
@@ -89,7 +90,11 @@ class FilmsContainer extends Component {
                     columnWidth={298}
                     monitorImagesLoaded={true}
                 >
+                {/* <div className="grid-wrapper">
+                    <div className="row"> */}
                     {movieDataShow}
+                    {/* </div> */}
+                {/* </div> */}
                 </StackGrid>
                 {isLoading && <Loader />}
             </div>

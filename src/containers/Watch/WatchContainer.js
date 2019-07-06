@@ -59,11 +59,22 @@ class WatchContainer extends Component {
         return (
             <div>
                 <ReactJWPlayer
+                    ref={"jwplayer"}
                     playerId='my-jw-player-instance'
                     playerScript='https://content.jwplatform.com/libraries/oCTK7cQT.js'
                     playlist={playlist}
-                    onVideoLoad={this.onVideoLoad}
-                    customProps={{ displayMode: 'shelf' }}
+                    customProps={{
+                        skin: {
+                            name: 'seven',
+                            active: '#b71c1c',
+                            inactive: '#ffffff',
+                            background: 'transparent'
+                        },
+                        stretching: 'seven',
+                        autostart: true,
+                        mute: true
+                    }}
+                    onVideoLoad={this.onVideoLoad}                    
                 />
             </div>
         );

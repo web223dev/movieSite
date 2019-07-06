@@ -54,10 +54,11 @@ class FilmsContainer extends Component {
         if (!isLoading) {
             let percentageScrolled = scrollHelpers.getPercentageScrolledDown(window);
             if (percentageScrolled > .8) {
-                const nextPage = this.state.currentPage + 1;
-                // if(nextPage > 100)
-                DramaActions.getPopularDrama(nextPage);
-                this.setState({ currentPage: nextPage });
+                const nextPage = this.state.currentPage + 1; 
+                if (nextPage < 10) {
+                    DramaActions.getPopularDrama(nextPage);
+                    this.setState({ currentPage: nextPage });
+                }
             }
         }
     }
@@ -83,7 +84,7 @@ class FilmsContainer extends Component {
             }
         }
         return (
-            <div className="collections-container">
+            <div className="drama collections-container">
                 <PageHeader name="Dramas" />
                 <StackGrid
                     // columnWidth={width <= 672 ? '100%' : 298}

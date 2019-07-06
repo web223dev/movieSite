@@ -21,7 +21,7 @@ const tdetails = [
 
 const TitleField = () => {
     return (
-        <div className="collections-container"> 
+        <div className="collections-container home"> 
             <TitleList title="Search Result" urlString="" />           
             {
                 tdetails.map((tdetail) =>
