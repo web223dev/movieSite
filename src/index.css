@@ -275,6 +275,9 @@ code {
 }
 
 /* Films Page */
+.films{
+  min-height: 100vh;
+}
 .films .movie-section{
   margin: 0;
 }

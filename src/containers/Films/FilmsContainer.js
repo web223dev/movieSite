@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import * as postActions from 'modules/films/postmovie';
+import * as scrollHelpers from 'common/scroll.helpers';
 import StackGrid from "react-stack-grid";
 import MovieSection from 'components/MovieSection';
 import ConvertImage from 'components/ConvertImage';
+import Loader from 'components/Loader'
 
 class FilmsContainer extends Component {
     constructor(props) {
@@ -52,32 +54,37 @@ class FilmsContainer extends Component {
         if (!isLoading) {
             let percentageScrolled = scrollHelpers.getPercentageScrolledDown(window);
             if (percentageScrolled > .8) {
-                const nextPage = this.state.currentPage + 1;
-                PostActions(nextPage);
+                const nextPage = this.state.currentPage + 1; console.log(nextPage);
+                // if(nextPage > 100)
+                PostActions.getPopularMovie(nextPage);
                 this.setState({ currentPage: nextPage });
             }
         }
     }
     render() {
+        const { moviedatas, isLoading } = this.props;
         let movieDataShow;
-        const { moviedatas } = this.props;
-        const mdatas = moviedatas.results;
-        if (mdatas !== undefined) {
-            movieDataShow = mdatas.map((mdata, i) => {
-                if (mdata.backdrop_path)
-                    var bgImg = ConvertImage(500, mdata.backdrop_path);
-                return (
-                    <MovieSection
-                        mdetail={mdata}
-                        bgImg={bgImg}
-                        key={i}
-                    />
-                )
-            })
+
+        if (moviedatas) {
+            const mdatas = moviedatas.results;
+            if (mdatas !== undefined) {
+                movieDataShow = mdatas.map((mdata, i) => {
+                    if (mdata.backdrop_path)
+                        var bgImg = ConvertImage(500, mdata.backdrop_path);
+                    return (
+                        <MovieSection
+                            mdetail={mdata}
+                            bgImg={bgImg}
+                            key={i}
+                        />
+                    )
+                })
+            }
         }
         return (
             <div className="films collections-container">
                 <PageHeader name="Films" />
+
                 <StackGrid
                     // columnWidth={width <= 672 ? '100%' : 298}
                     columnWidth={298}
@@ -85,6 +92,8 @@ class FilmsContainer extends Component {
                 >
                     {movieDataShow}
                 </StackGrid>
+                {/* <Loader /> */}
+                {isLoading && <Loader />}
             </div>
         );
     }
