@@ -282,7 +282,7 @@ code {
 }
 
 /* Films Page */
-.films{
+.films, .drama{
   min-height: 100vh;
 }
 .films .movie-section{
