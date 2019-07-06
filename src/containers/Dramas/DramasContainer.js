@@ -7,44 +7,80 @@ import * as dramaActions from 'modules/dramas/postdrama';
 import StackGrid from "react-stack-grid";
 import MovieSection from 'components/MovieSection';
 import ConvertImage from 'components/ConvertImage';
+import * as scrollHelpers from 'common/scroll.helpers';
+import Loader from 'components/Loader'
 
 class FilmsContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentPage: 1,
+            currentMovies: []
+        };
+        // Binds the handleScroll to this class (MovieBrowser)
+        // which provides access to MovieBrowser's props
+        // Note: You don't have to do this if you call a method
+        // directly from a lifecycle method
+        this.handleScroll = this.handleScroll.bind(this);
+    }
     componentDidMount() {
-        const { DramaActions,  } = this.props;
-        DramaActions.getPopularDrama();
+        const { DramaActions, } = this.props;
+
+        window.onscroll = this.handleScroll;
+        DramaActions.getPopularDrama(this.state.currentPage);
 
         // If search movie in searchBox, it will be redirect homepage
         if (this.props.data_loaded) {
             this.props.history.push('/');
         }
     }
-    
-    componentWillReceiveProps(nextProps){
+
+    componentWillReceiveProps(nextProps) {
         // If search movie in searchBox, it will be redirect homepage
-        if(nextProps.data_loaded) {
-          this.props.history.push('/')
+        if (nextProps.data_loaded) {
+            this.props.history.push('/')
         }
-        if(nextProps.errors){
-          console.warn(nextProps.errors)
+        if (nextProps.errors) {
+            console.warn(nextProps.errors)
         }
     }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll() {
+        const { DramaActions, isLoading } = this.props;
+        if (!isLoading) {
+            let percentageScrolled = scrollHelpers.getPercentageScrolledDown(window);
+            if (percentageScrolled > .8) {
+                const nextPage = this.state.currentPage + 1;
+                // if(nextPage > 100)
+                DramaActions.getPopularDrama(nextPage);
+                this.setState({ currentPage: nextPage });
+            }
+        }
+    }
+
     render() {
         let dramaDataShow;
-        const { dramadatas } = this.props;
-        const ddatas = dramadatas.results;
-        if (ddatas !== undefined) {
-            dramaDataShow = ddatas.map((ddata, i) => {
-                if (ddata.backdrop_path)
-                    var bgImg = ConvertImage(500, ddata.backdrop_path);
-                return (
-                    <MovieSection
-                        mdetail={ddata}
-                        bgImg={bgImg}
-                        category="tv"
-                        key={i}
-                    />
-                )
-            })
+        const { dramadatas, isLoading } = this.props;
+        if (dramadatas) {
+            const ddatas = dramadatas.results;
+            if (ddatas !== undefined) {
+                dramaDataShow = ddatas.map((ddata, i) => {
+                    if (ddata.backdrop_path)
+                        var bgImg = ConvertImage(500, ddata.backdrop_path);
+                    return (
+                        <MovieSection
+                            mdetail={ddata}
+                            bgImg={bgImg}
+                            category="tv"
+                            key={i}
+                        />
+                    )
+                })
+            }
         }
         return (
             <div className="collections-container">
@@ -56,6 +92,7 @@ class FilmsContainer extends Component {
                 >
                     {dramaDataShow}
                 </StackGrid>
+                {isLoading && <Loader />}
             </div>
         );
     }
@@ -64,6 +101,7 @@ class FilmsContainer extends Component {
 export default connect(
     (state) => ({
         dramadatas: state.dramas.data,
+        isLoading: state.dramas.pending,
         data_loaded: state.search_movie.data_loaded
     }),
     (dispatch) => ({

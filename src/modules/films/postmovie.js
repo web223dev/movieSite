@@ -28,7 +28,7 @@ export const falidReceiveMovie = error => ({
 })
 
 export const getPopularMovie = (page) => dispatch => {
-  dispatch(requestMovie());
+  dispatch(requestMovie(page));
   return getPopularMovieAPI(page).then(res => {
     dispatch(receiveMovie(res.data))
   })

@@ -54,7 +54,7 @@ class FilmsContainer extends Component {
         if (!isLoading) {
             let percentageScrolled = scrollHelpers.getPercentageScrolledDown(window);
             if (percentageScrolled > .8) {
-                const nextPage = this.state.currentPage + 1; console.log(nextPage);
+                const nextPage = this.state.currentPage + 1;
                 // if(nextPage > 100)
                 PostActions.getPopularMovie(nextPage);
                 this.setState({ currentPage: nextPage });
@@ -84,7 +84,6 @@ class FilmsContainer extends Component {
         return (
             <div className="films collections-container">
                 <PageHeader name="Films" />
-
                 <StackGrid
                     // columnWidth={width <= 672 ? '100%' : 298}
                     columnWidth={298}
@@ -92,7 +91,6 @@ class FilmsContainer extends Component {
                 >
                     {movieDataShow}
                 </StackGrid>
-                {/* <Loader /> */}
                 {isLoading && <Loader />}
             </div>
         );
