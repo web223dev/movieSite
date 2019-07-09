@@ -9,12 +9,13 @@ class CommonMenu extends Component {
         this.toggleDropdown = this.toggleDropdown.bind(this);
         this.state = {
             isOpen: false,
-            dropdownOpen: false
+            dropdownOpen: false,
         };
     }
     toggle() {
         this.setState({
-            isOpen: !this.state.isOpen
+            isOpen: !this.state.isOpen,
+            dropdownOpen: true
         });
     }
     toggleDropdown() {
@@ -23,10 +24,9 @@ class CommonMenu extends Component {
         });
     }
     render() {
-        const { pathname, size } = this.props;
+        const { pathname } = this.props;
         const { isOpen, dropdownOpen } = this.state;
         const { toggleDropdown, toggle } = this;
-        var width = size.width;
         return (
             <Navbar light expand="lg">
                 <NavbarToggler onClick={toggle} />
@@ -36,9 +36,8 @@ class CommonMenu extends Component {
                             <NavLink href="/#/" onClick={toggle} style={{ borderColor: pathname === '/' && 'rgb(184, 19, 13)' }}>Home</NavLink>
                         </NavItem>
 
-                        <Dropdown isOpen={width > 991 ? dropdownOpen : true} toggle={toggleDropdown} nav inNavbar>
+                        <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} nav inNavbar>
                             <DropdownToggle
-                                onMouseOver={toggleDropdown}
                                 style={{ borderColor: (pathname === '/tv-programmes/dramas' || pathname === "/tv-programmes/entertainment" || pathname === "/tv-programmes/news") && 'rgb(184, 19, 13)' }} nav caret>
                                 TV Programmes
                             </DropdownToggle>
