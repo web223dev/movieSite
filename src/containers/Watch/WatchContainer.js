@@ -47,13 +47,18 @@ class WatchContainer extends Component {
         super(props);
         this.state = {
             videoTitle: '',
+            videotensec: null
         };
         this.onVideoLoad = this.onVideoLoad.bind(this);
+        this.onTime = this.onTime.bind(this);
     }
     onVideoLoad(event) {
         this.setState({
             videoTitle: event.item.description // this only works with json feeds!
         });
+    }
+    onTime(event){
+        // console.log(event);
     }
     render() {
         return (
@@ -62,19 +67,9 @@ class WatchContainer extends Component {
                     ref={"jwplayer"}
                     playerId='my-jw-player-instance'
                     playerScript='https://content.jwplatform.com/libraries/oCTK7cQT.js'
-                    playlist={playlist}
-                    customProps={{
-                        skin: {
-                            name: 'seven',
-                            active: '#b71c1c',
-                            inactive: '#ffffff',
-                            background: 'transparent'
-                        },
-                        stretching: 'seven',
-                        autostart: true,
-                        mute: true
-                    }}
-                    onVideoLoad={this.onVideoLoad}                    
+                    playlist={playlist}                    
+                    onVideoLoad={this.onVideoLoad} 
+                    onTime={this.onTime}                   
                 />
             </div>
         );

@@ -7,6 +7,7 @@ class CommonMenu extends Component {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.toggleDropdown = this.toggleDropdown.bind(this);
+        this.hideMenu = this.hideMenu.bind(this);
         this.state = {
             isOpen: false,
             dropdownOpen: false,
@@ -18,6 +19,11 @@ class CommonMenu extends Component {
             dropdownOpen: true
         });
     }
+    hideMenu(){
+        this.setState({
+            isOpen: false
+        })
+    }
     toggleDropdown() {
         this.setState({
             dropdownOpen: !this.state.dropdownOpen
@@ -26,14 +32,14 @@ class CommonMenu extends Component {
     render() {
         const { pathname } = this.props;
         const { isOpen, dropdownOpen } = this.state;
-        const { toggleDropdown, toggle } = this;
+        const { toggleDropdown, toggle, hideMenu } = this;
         return (
             <Navbar light expand="lg">
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav navbar>
                         <NavItem>
-                            <NavLink href="/#/" onClick={toggle} style={{ borderColor: pathname === '/' && 'rgb(184, 19, 13)' }}>Home</NavLink>
+                            <NavLink href="/#/" onClick={hideMenu} style={{ borderColor: pathname === '/' && 'rgb(184, 19, 13)' }}>Home</NavLink>
                         </NavItem>
 
                         <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} nav inNavbar>
@@ -44,24 +50,24 @@ class CommonMenu extends Component {
                             <DropdownMenu left="true">
                                 <div className="triangle"></div>
                                 <DropdownItem>
-                                    <NavLink onClick={toggle} href="/#/tv-programmes/dramas">Dramas</NavLink>
+                                    <NavLink onClick={hideMenu} href="/#/tv-programmes/dramas">Dramas</NavLink>
                                 </DropdownItem>
                                 <DropdownItem>
-                                    <NavLink onClick={toggle} href="/#/tv-programmes/entertainment">Entertainment / Current affairs</NavLink>
+                                    <NavLink onClick={hideMenu} href="/#/tv-programmes/entertainment">Entertainment / Current affairs</NavLink>
                                 </DropdownItem>
                                 <DropdownItem>
-                                    <NavLink onClick={toggle} href="/#/tv-programmes/news">News</NavLink>
+                                    <NavLink onClick={hideMenu} href="/#/tv-programmes/news">News</NavLink>
                                 </DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                         <NavItem>
-                            <NavLink href="/#/films" onClick={toggle} style={{ borderColor: pathname === '/films' && 'rgb(184, 19, 13)' }}>Films</NavLink>
+                            <NavLink href="/#/films" onClick={hideMenu} style={{ borderColor: pathname === '/films' && 'rgb(184, 19, 13)' }}>Films</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/#/originals" onClick={toggle} style={{ borderColor: pathname === '/originals' && 'rgb(184, 19, 13)' }}>Originals</NavLink>
+                            <NavLink href="/#/originals" onClick={hideMenu} style={{ borderColor: pathname === '/originals' && 'rgb(184, 19, 13)' }}>Originals</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/#/recently-added" onClick={toggle} style={{ borderColor: pathname === '/recently-added' && 'rgb(184, 19, 13)' }}>Recently Added</NavLink>
+                            <NavLink href="/#/recently-added" onClick={hideMenu} style={{ borderColor: pathname === '/recently-added' && 'rgb(184, 19, 13)' }}>Recently Added</NavLink>
                         </NavItem>
                     </Nav>
                 </Collapse>
