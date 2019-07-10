@@ -204,7 +204,8 @@ code {
 }
 
 .movie-section {
-    margin: 0px 6px;
+    /* margin: 0px 6px; */
+    margin: 3px;
     position: relative;
     display: inline-block;
 }
@@ -214,7 +215,7 @@ code {
 }
 
 .grid-wrapper {
-    text-align: left;
+    margin: 0 auto;
 }
 
 .movie-section .movielink {
@@ -404,11 +405,10 @@ code {
 .drama {
     min-height: 100vh;
 }
-
+/* 
 .films .movie-section {
     margin: 0;
-}
-
+} */
 
 /* Watch Page */
 
@@ -419,6 +419,9 @@ code {
 .jw-progress{
     background-color: red !important;
 }
+.jw-slider-volume .jw-progress{
+    background-color: #f2f2f2 !important;
+}
 
 
 /* .jw-slider-time .jw-buffer, .jw-horizontal-volume-container .jw-buffer{
@@ -427,7 +430,11 @@ code {
 
 
 /* Responsive */
-
+/* @media (max-width: 1583px){
+    .grid-wrapper {
+        max-width: 1500px;
+    }
+} */
 @media (max-width: 1279px) {
     .menu-content .navbar-nav {
         margin: 0 46px;

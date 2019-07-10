@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PageHeader from 'components/PageHeader';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import * as postActions from 'modules/films/postmovie';
 import * as scrollHelpers from 'common/scroll.helpers';
-import StackGrid from "react-stack-grid";
 import MovieSection from 'components/MovieSection';
 import ConvertImage from 'components/ConvertImage';
 import Loader from 'components/Loader'
+import { withSize } from 'react-sizeme'
 
 class FilmsContainer extends Component {
     constructor(props) {
@@ -63,8 +63,14 @@ class FilmsContainer extends Component {
         }
     }
     render() {
-        const { moviedatas, isLoading } = this.props;
+        const { moviedatas, isLoading, size } = this.props;
         let movieDataShow;
+
+        // Calculate width for page center
+        var width = size.width;
+        const item_width = 296.47;
+        var item_num = Math.floor((width) / item_width);
+        var res_width = (item_width * item_num) + (6 * (item_num + 1));
 
         if (moviedatas) {
             const mdatas = moviedatas.results;
@@ -85,30 +91,28 @@ class FilmsContainer extends Component {
         return (
             <div className="films collections-container">
                 <PageHeader name="Films" />
-                <StackGrid
-                    // columnWidth={width <= 672 ? '100%' : 298}
-                    columnWidth={298}
-                    monitorImagesLoaded={true}
-                >
-                {/* <div className="grid-wrapper">
-                    <div className="row"> */}
+                <div className="grid-wrapper" style={{ width: res_width }}>
                     {movieDataShow}
-                    {/* </div> */}
-                {/* </div> */}
-                </StackGrid>
+                </div>
                 {isLoading && <Loader />}
             </div>
         );
     }
 }
 
-export default connect(
-    (state) => ({
-        moviedatas: state.films.data,
-        isLoading: state.films.pending,
-        data_loaded: state.search_movie.data_loaded
-    }),
-    (dispatch) => ({
-        PostActions: bindActionCreators(postActions, dispatch)
-    })
-)(withRouter(FilmsContainer));
+const enhance = compose(
+    withRouter,
+    withSize(),
+    connect(
+        (state) => ({
+            moviedatas: state.films.data,
+            isLoading: state.films.pending,
+            data_loaded: state.search_movie.data_loaded
+        }),
+        (dispatch) => ({
+            PostActions: bindActionCreators(postActions, dispatch)
+        })
+    )
+)
+
+export default enhance(FilmsContainer);
