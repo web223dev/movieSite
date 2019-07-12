@@ -8,7 +8,7 @@ const initialState = {
 }
 
 const tvSuccessReducer = (state, action) => {    
-    const existingTVs = state.data ? state.data.results : [];
+    const existingTVs = state.data ? (action.payload.page !== state.data.page) ? state.data.results : [] : [];
     // Create a new state object to be returned
     // When creating the new state, be sure to include any
     // existing properties we want to persist

@@ -24,7 +24,7 @@ class FilmsContainer extends Component {
         this.handleScroll = this.handleScroll.bind(this);
     }
     componentDidMount() {
-        const { DramaActions, } = this.props;
+        const { DramaActions, } = this.props; 
 
         window.onscroll = this.handleScroll;
         DramaActions.getPopularDrama(this.state.currentPage);
@@ -71,7 +71,8 @@ class FilmsContainer extends Component {
         var width = size.width;
         const item_width = 296.47;
         var item_num = Math.floor((width) / item_width);
-        var res_width = (item_width * item_num) + (6 * (item_num + 1));
+        if(item_num === 0 ) item_num = 1;
+        var res_width = (item_width * item_num) + (9 * (item_num + 1));
         
         if (dramadatas) {
             const ddatas = dramadatas.results;

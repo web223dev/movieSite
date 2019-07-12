@@ -58,7 +58,6 @@ class WatchContainer extends Component {
         });
     }
     onTime(event){
-        // console.log(event);
     }
     render() {
         return (

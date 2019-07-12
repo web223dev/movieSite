@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withSize } from 'react-sizeme'
-import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 class CommonMenu extends Component {
     constructor(props) {
@@ -42,24 +42,24 @@ class CommonMenu extends Component {
                             <NavLink href="/#/" onClick={hideMenu} style={{ borderColor: pathname === '/' && 'rgb(184, 19, 13)' }}>Home</NavLink>
                         </NavItem>
 
-                        <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} nav inNavbar>
+                        <UncontrolledDropdown isOpen={dropdownOpen} toggle={toggleDropdown} nav inNavbar>
                             <DropdownToggle
                                 style={{ borderColor: (pathname === '/tv-programmes/dramas' || pathname === "/tv-programmes/entertainment" || pathname === "/tv-programmes/news") && 'rgb(184, 19, 13)' }} nav caret>
                                 TV Programmes
                             </DropdownToggle>
                             <DropdownMenu left="true">
                                 <div className="triangle"></div>
-                                <DropdownItem>
-                                    <NavLink onClick={hideMenu} href="/#/tv-programmes/dramas">Dramas</NavLink>
+                                <DropdownItem onClick={hideMenu} href="/#/tv-programmes/dramas">
+                                    Dramas
                                 </DropdownItem>
-                                <DropdownItem>
-                                    <NavLink onClick={hideMenu} href="/#/tv-programmes/entertainment">Entertainment / Current affairs</NavLink>
+                                <DropdownItem onClick={hideMenu} href="/#/tv-programmes/entertainment">
+                                    Entertainment / Current affairs
                                 </DropdownItem>
-                                <DropdownItem>
-                                    <NavLink onClick={hideMenu} href="/#/tv-programmes/news">News</NavLink>
+                                <DropdownItem onClick={hideMenu} href="/#/tv-programmes/news">
+                                    News
                                 </DropdownItem>
                             </DropdownMenu>
-                        </Dropdown>
+                        </UncontrolledDropdown>
                         <NavItem>
                             <NavLink href="/#/films" onClick={hideMenu} style={{ borderColor: pathname === '/films' && 'rgb(184, 19, 13)' }}>Films</NavLink>
                         </NavItem>

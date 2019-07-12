@@ -77,6 +77,10 @@ code {
     left: 20px;
 }
 
+.dropdown-menu .dropdown-item{
+    color: rgba(255,255,255,0.8);
+}
+
 .dropdown-item:hover,
 .dropdown-item:focus {
     color: #fff;
@@ -316,10 +320,10 @@ code {
     margin: 16px 0;
 }
 
-.slick-slider .slick-track,
+/* .slick-slider .slick-track,
 .slick-slider .slick-list {
     display: flex;
-}
+} */
 
 
 /* MovieDetail Page */
@@ -442,20 +446,14 @@ code {
     #menuinput-wrap {
         margin-right: 4em;
     }
+    .pg-collections-header {
+        margin: 36px 35px;
+    }
 }
 
 @media (min-width: 1024px) {
     .navbar-expand-md .navbar-toggler {
         display: none;
-    }
-}
-
-@media (max-width: 1023px) {
-    .dropdown-menu.show .triangle {
-        display: none;
-    }
-    .dropdown-menu {
-        border-top: transparent;
     }
 }
 
@@ -477,6 +475,18 @@ code {
     }
     .hero-wrapper {
         padding-top: 16%;
+    }
+}
+
+@media (max-width: 991px) {
+    .dropdown-menu.show .triangle {
+        display: none;
+    }
+    .dropdown-menu {
+        border-top: transparent;
+    }
+    .pg-collections-header {
+        margin: 36px 29px;
     }
 }
 
@@ -543,11 +553,11 @@ code {
     .mdtitle-wrapper .release-date {
         padding-left: 0;
     }
-}
-
-@media (max-width: 416px) {
+    .pg-collections-header {
+        margin: 36px 0;
+    }
     .collections-container {
-        margin: 10px 2px;
+        margin: 10px 24px;
     }
 }
 

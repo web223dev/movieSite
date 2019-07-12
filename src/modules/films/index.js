@@ -8,7 +8,7 @@ const initialState = {
 }
 
 const movieSuccessReducer = (state, action) => {
-    const existingMovies = state.data ? state.data.results : [];
+    const existingMovies = state.data ? (action.payload.page !== state.data.page) ? state.data.results : [] : [];
     // Create a new state object to be returned
     // When creating the new state, be sure to include any
     // existing properties we want to persist

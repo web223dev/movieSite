@@ -14,8 +14,7 @@ class FilmsContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentPage: 1,
-            currentMovies: []
+            currentPage: 1
         };
         // Binds the handleScroll to this class (MovieBrowser)
         // which provides access to MovieBrowser's props
@@ -25,10 +24,12 @@ class FilmsContainer extends Component {
     }
     componentDidMount() {
         const { PostActions } = this.props;
+        const { currentPage } = this.state;
 
         window.onscroll = this.handleScroll;
-        PostActions.getPopularMovie(this.state.currentPage);
 
+        // if(currentPage !== beforePage )
+        PostActions.getPopularMovie(currentPage);
         // If search movie in searchBox, it will be redirect homepage
         if (this.props.data_loaded) {
             this.props.history.push('/');
@@ -43,6 +44,7 @@ class FilmsContainer extends Component {
         if (nextProps.errors) {
             console.warn(nextProps.errors)
         }
+
     }
 
     componentWillUnmount() {
@@ -63,14 +65,15 @@ class FilmsContainer extends Component {
         }
     }
     render() {
-        const { moviedatas, isLoading, size } = this.props;
+        const { moviedatas, isLoading, size } = this.props; 
         let movieDataShow;
 
         // Calculate width for page center
         var width = size.width;
         const item_width = 296.47;
         var item_num = Math.floor((width) / item_width);
-        var res_width = (item_width * item_num) + (6 * (item_num + 1));
+        if (item_num === 0) item_num = 1;
+        var res_width = (item_width * item_num) + (9 * (item_num + 1));
 
         if (moviedatas) {
             const mdatas = moviedatas.results;
