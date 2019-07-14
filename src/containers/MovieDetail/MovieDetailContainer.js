@@ -52,7 +52,7 @@ class MovieDetailContainer extends Component {
         const width = size.width;
         const sm_movies = similar_movies.results;       
         const gradient_color = 'linear-gradient(to right, #181818 0, rgba(24, 24, 24, 0.6) 100%)';
-        const mobie_gradient_color = 'background-image: linear-gradient(to top, #181818 0, rgba(24, 24, 24, 0.6) 100%);'
+        const mobie_gradient_color = 'linear-gradient(to top, #181818 0, rgba(24, 24, 24, 0.6) 100%)'
 
         if (moviedata.backdrop_path)
             var bgImg = ConvertImage('original', moviedata.backdrop_path);
@@ -79,7 +79,7 @@ class MovieDetailContainer extends Component {
                     <div className={width < 769 ? 'mobile-loader-wrapper' : 'loader-wrapper'}>
                         {isLoadingMovie && <Loader mobile={width < 769 ? true : false}/>}
                     </div>
-                    <div className="left-gradient-overlay" style={{backgroundImage: isLoadingMovie && gradient_color}} />
+                    <div className="left-gradient-overlay" style={{backgroundImage: isLoadingMovie && (width < 769 ? mobie_gradient_color : gradient_color)}} />
                     <div className="hero-wrapper">
                         <div className="hero-header">
                             <img className="title-logo" src={Daredevil} alt="Daredevil" />

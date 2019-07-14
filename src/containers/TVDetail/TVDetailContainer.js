@@ -58,7 +58,7 @@ class TVDetailContainer extends Component {
         const width = size.width;
         const sm_tvs = similar_tv.results;
         const gradient_color = 'linear-gradient(to right, #181818 0, rgba(24, 24, 24, 0.6) 100%)';
-        const mobie_gradient_color = 'background-image: linear-gradient(to top, #181818 0, rgba(24, 24, 24, 0.6) 100%);'
+        const mobie_gradient_color = 'linear-gradient(to top, #181818 0, rgba(24, 24, 24, 0.6) 100%)'
 
         if (dramadata.backdrop_path)
             var bgImg = ConvertImage('original', dramadata.backdrop_path);
@@ -87,7 +87,7 @@ class TVDetailContainer extends Component {
                     <div className={width < 769 ? 'mobile-loader-wrapper' : 'loader-wrapper'}>
                         {isLoadingTV && <Loader mobile={width < 769 ? true : false}/>}
                     </div>
-                    <div className="left-gradient-overlay"  style={{backgroundImage: isLoadingTV && gradient_color}} />
+                    <div className="left-gradient-overlay"  style={{backgroundImage: isLoadingTV && (width < 769 ? mobie_gradient_color : gradient_color)}} />
                     <div className="hero-wrapper">
                         <div className="hero-header">
                             <img className="title-logo" src={Daredevil} alt="Daredevil" />

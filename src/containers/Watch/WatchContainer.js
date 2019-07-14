@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactJWPlayer from 'react-jw-player';
+import Loader from 'components/Loader';
 
 const playlist = [{
     file: 'https://content.jwplatform.com/videos/pNLwBC31-HpVzMx7u.mp4',
@@ -53,22 +54,25 @@ class WatchContainer extends Component {
         this.onTime = this.onTime.bind(this);
     }
     onVideoLoad(event) {
+
         this.setState({
             videoTitle: event.item.description // this only works with json feeds!
         });
     }
-    onTime(event){
+    onTime(event) {
     }
     render() {
+        const { videoTitle } = this.state;
         return (
-            <div>
+            <div className="watch">
+                {videoTitle === '' && <Loader />}
                 <ReactJWPlayer
                     ref={"jwplayer"}
                     playerId='my-jw-player-instance'
                     playerScript='https://content.jwplatform.com/libraries/oCTK7cQT.js'
-                    playlist={playlist}                    
-                    onVideoLoad={this.onVideoLoad} 
-                    onTime={this.onTime}                   
+                    playlist={playlist}
+                    onVideoLoad={this.onVideoLoad}
+                    onTime={this.onTime}
                 />
             </div>
         );
