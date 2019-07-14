@@ -320,6 +320,10 @@ code {
     margin: 16px 0;
 }
 
+.home .loader, .drama .loader, .films .loader{
+    margin: 4em 0;
+}
+
 /* .slick-slider .slick-track,
 .slick-slider .slick-list {
     display: flex;
@@ -401,7 +405,22 @@ code {
 .mdtitle-wrapper .duration {
     padding-left: 20px;
 }
-
+.mdtitle-section .loader-wrapper{
+    position: absolute;
+    margin: 0;
+    top: 26%;
+    left: 68%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+.mdtitle-section .mobile-loader-wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+}
 
 /* Films Page */
 

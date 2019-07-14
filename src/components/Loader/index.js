@@ -1,26 +1,35 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
+const ColorLinearProgress = withStyles({
+    colorPrimary: {
+        backgroundColor: '#424242',
+    },
+    barColorPrimary: {
+        backgroundColor: '#fafafa',
+    },
+})(LinearProgress);
 
 const useStyles = makeStyles(theme => ({
     progress: {
-        // position: 'absolute',
         color: '#fff',
         display: 'block',
         margin: '0 auto',
-        // left: 0,
-        // right: 0
-    },
+    }
 }));
 
-
-const Loader = () => {
+const Loader = ({ mobile }) => {
     const classes = useStyles();
     return (
-        <div style={{ margin: '4em 0'}}>
-            <CircularProgress className={classes.progress} />
+        <div className="loader">
+            {
+                mobile ?
+                    <ColorLinearProgress /> :
+                    <CircularProgress className={classes.progress} />
+            }
         </div>
-        
     );
 };
 

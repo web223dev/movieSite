@@ -11,6 +11,7 @@ import MovieSection from 'components/MovieSection';
 import StarRatings from 'react-star-ratings';
 import ConvertImage from 'components/ConvertImage';
 import Loader from 'components/Loader';
+import { withSize } from 'react-sizeme';
 
 class MovieDetailContainer extends Component {
     componentDidMount() {
@@ -24,13 +25,13 @@ class MovieDetailContainer extends Component {
             this.props.history.push('/');
         }
     }
-    
+
     componentDidUpdate(prevProps) {
         //In MovieDetail page, when you click similar movie, it will be render current page again.
         const { PostActions, SimilarMovieActions } = this.props;
         const id = this.props.location.pathname.substring(7)
         const prev_id = prevProps.location.pathname.substring(7)
-        
+
         if (id !== prev_id) {
             PostActions.getMovieDetail(id);
             SimilarMovieActions.getSimilarMovie(id);
@@ -47,8 +48,11 @@ class MovieDetailContainer extends Component {
     }
     render() {
         let SimilarMovies;
-        const { moviedata, similar_movies, isLoading } = this.props;
-        const sm_movies = similar_movies.results;
+        const { moviedata, similar_movies, isLoading, isLoadingMovie, size } = this.props;
+        const width = size.width;
+        const sm_movies = similar_movies.results;       
+        const gradient_color = 'linear-gradient(to right, #181818 0, rgba(24, 24, 24, 0.6) 100%)';
+        const mobie_gradient_color = 'background-image: linear-gradient(to top, #181818 0, rgba(24, 24, 24, 0.6) 100%);'
 
         if (moviedata.backdrop_path)
             var bgImg = ConvertImage('original', moviedata.backdrop_path);
@@ -71,8 +75,11 @@ class MovieDetailContainer extends Component {
             var current_rating = moviedata.vote_average / 2;
         return (
             <div className="mdtitle-wrapper">
-                <section className="mdtitle-section" id="section-hero" style={{ backgroundImage: 'url(' + bgImg + ')' }}>
-                    <div className="left-gradient-overlay" />
+                <section className="mdtitle-section" id="section-hero" style={{ backgroundImage: 'url(' + bgImg + ')'}}>
+                    <div className={width < 769 ? 'mobile-loader-wrapper' : 'loader-wrapper'}>
+                        {isLoadingMovie && <Loader mobile={width < 769 ? true : false}/>}
+                    </div>
+                    <div className="left-gradient-overlay" style={{backgroundImage: isLoadingMovie && gradient_color}} />
                     <div className="hero-wrapper">
                         <div className="hero-header">
                             <img className="title-logo" src={Daredevil} alt="Daredevil" />
@@ -108,8 +115,10 @@ class MovieDetailContainer extends Component {
 }
 const composedMovieDetailContainer = compose(
     withRouter,
+    withSize(),
     connect(
         (state) => ({
+            isLoadingMovie: state.moviedetail.pending,
             moviedata: state.moviedetail.data,
             similar_movies: state.similar.data,
             isLoading: state.similar.pending,
@@ -121,5 +130,5 @@ const composedMovieDetailContainer = compose(
         })
     ),
 )
-    
+
 export default composedMovieDetailContainer(MovieDetailContainer);
