@@ -10,6 +10,7 @@ import settings from './detailSliderSettings';
 import MovieSection from 'components/MovieSection';
 import StarRatings from 'react-star-ratings';
 import ConvertImage from 'components/ConvertImage';
+import Loader from 'components/Loader';
 
 class MovieDetailContainer extends Component {
     componentDidMount() {
@@ -46,7 +47,7 @@ class MovieDetailContainer extends Component {
     }
     render() {
         let SimilarMovies;
-        const { moviedata, similar_movies } = this.props;
+        const { moviedata, similar_movies, isLoading } = this.props;
         const sm_movies = similar_movies.results;
 
         if (moviedata.backdrop_path)
@@ -99,6 +100,7 @@ class MovieDetailContainer extends Component {
                     <Slider {...settings}>
                         {SimilarMovies}
                     </Slider>
+                    {isLoading && <Loader />}
                 </section>
             </div>
         );
@@ -110,6 +112,7 @@ const composedMovieDetailContainer = compose(
         (state) => ({
             moviedata: state.moviedetail.data,
             similar_movies: state.similar.data,
+            isLoading: state.similar.pending,
             data_loaded: state.search_movie.data_loaded
         }),
         (dispatch) => ({

@@ -10,6 +10,7 @@ import settings from 'containers/MovieDetail/detailSliderSettings';
 import MovieSection from 'components/MovieSection';
 import StarRatings from 'react-star-ratings';
 import ConvertImage from 'components/ConvertImage';
+import Loader from 'components/Loader'
 
 class TVDetailContainer extends Component {
     constructor(props) {
@@ -52,7 +53,7 @@ class TVDetailContainer extends Component {
     }
     render() {
         let SimilarTVs;
-        const { dramadata, similar_tv } = this.props;
+        const { dramadata, similar_tv, isLoading } = this.props;
         const sm_tvs = similar_tv.results;
 
         if (dramadata.backdrop_path)
@@ -110,6 +111,7 @@ class TVDetailContainer extends Component {
                     <Slider {...settings}>
                         {SimilarTVs}
                     </Slider>
+                    {isLoading && <Loader />}
                 </section>
             </div>
         );
@@ -119,6 +121,7 @@ export default connect(
     (state) => ({
         dramadata: state.tvdetail.data,
         similar_tv: state.similartv.data,
+        isLoading: state.similartv.pending,
         data_loaded: state.search_movie.data_loaded
     }),
     (dispatch) => ({

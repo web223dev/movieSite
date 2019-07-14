@@ -7,6 +7,7 @@ import Slider from "react-slick";
 import MovieSection from 'components/MovieSection';
 import settings from './SliderSettings';
 import ConvertImage from 'components/ConvertImage';
+import Loader from 'components/Loader'
 
 class TitleList extends Component {
     componentWillReceiveProps(nextProps) {
@@ -23,7 +24,7 @@ class TitleList extends Component {
     }
     render() {
         let movieDataShow, searchedMovieShow;
-        const { title, moviedatas, sectionId, searched_movie, data_loaded } = this.props;
+        const { title, moviedatas, sectionId, searched_movie, data_loaded, isLoading } = this.props;
 
         if (title==='Search Result' && searched_movie.length !== 0) {
             const searchedMovies = searched_movie.results;
@@ -62,6 +63,7 @@ class TitleList extends Component {
                         {movieDataShow}
                     </Slider>
                 </div>
+                {isLoading && <Loader />}
             </div>
         );
     }
@@ -71,6 +73,7 @@ export default connect(
     (state) => ({
         moviedatas: state.home.get('data'),
         searched_movie: state.search_movie.data,
+        isLoading: state.home.get('pending'),
         data_loaded: state.search_movie.data_loaded
     }),
     (dispatch) => ({
