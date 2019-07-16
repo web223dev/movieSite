@@ -42,7 +42,7 @@ class CommonMenu extends Component {
                             <NavLink href="/#/" onClick={hideMenu} style={{ borderColor: pathname === '/' && 'rgb(184, 19, 13)' }}>Home</NavLink>
                         </NavItem>
 
-                        <UncontrolledDropdown isOpen={dropdownOpen} toggle={toggleDropdown} nav inNavbar>
+                        <UncontrolledDropdown isOpen={dropdownOpen} onClick={toggleDropdown} nav inNavbar>
                             <DropdownToggle
                                 style={{ borderColor: (pathname === '/tv-programmes/dramas' || pathname === "/tv-programmes/entertainment" || pathname === "/tv-programmes/news") && 'rgb(184, 19, 13)' }} nav caret>
                                 TV Programmes
