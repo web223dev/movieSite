@@ -3,19 +3,19 @@ import ReactJWPlayer from 'react-jw-player';
 import Loader from 'components/Loader';
 
 const playlist = [{
-    file: 'https://content.jwplatform.com/videos/pNLwBC31-HpVzMx7u.mp4',
-    image: 'https://content.jwplatform.com/thumbs/pNLwBC31-1280.jpg',
+    file: 'https://content.jwplatform.com/videos/rdoG1qLi-YczqEmYj.mp4',
+    image: 'https://content.jwplatform.com/thumbs/rdoG1qLi-720.jpg',
     tracks: [{
         label: 'English',
         kind: 'captions',
         'default': true
     }],
-    description: "POV Surfing View Empty Ocean Waves Crashing"
+    description: "구름의 문"
 },
 {
-    file: 'https://cdn.jwplayer.com/videos/l76Ij09F-8yQ1cYbs.mp4',
-    image: "https://cdn.jwplayer.com/thumbs/XH9vzksD-720.jpg",
-    description: "Flashing sparks on black background in slow motion",
+    file: 'https://content.jwplatform.com/videos/cSZONl3v-ZdpWqSBu.mp4',
+    image: "https://content.jwplatform.com/thumbs/cSZONl3v-480.jpg",
+    description: "득점명수 메씨의 91개 꼴",
 },
 {
     file: 'https://cdn.jwplayer.com/videos/KkqEqb3o-8yQ1cYbs.mp4',
