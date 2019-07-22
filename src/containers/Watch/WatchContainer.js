@@ -3,19 +3,14 @@ import ReactJWPlayer from 'react-jw-player';
 import Loader from 'components/Loader';
 
 const playlist = [{
-    file: 'https://content.jwplatform.com/videos/rdoG1qLi-YczqEmYj.mp4',
-    image: 'https://content.jwplatform.com/thumbs/rdoG1qLi-720.jpg',
+    file: 'https://cdn.jwplayer.com/videos/KkqEqb3o-8yQ1cYbs.mp4',
+    image: 'https://cdn.jwplayer.com/thumbs/Juu4i0xE-720.jpg',
     tracks: [{
         label: 'English',
         kind: 'captions',
         'default': true
     }],
-    description: "구름의 문"
-},
-{
-    file: 'https://content.jwplatform.com/videos/cSZONl3v-ZdpWqSBu.mp4',
-    image: "https://content.jwplatform.com/thumbs/cSZONl3v-480.jpg",
-    description: "득점명수 메씨의 91개 꼴",
+    description: "Rear view slow motion shot of a group of teenage skater friends walking on mountain road with long boards together in slow motion"
 },
 {
     file: 'https://cdn.jwplayer.com/videos/KkqEqb3o-8yQ1cYbs.mp4',
