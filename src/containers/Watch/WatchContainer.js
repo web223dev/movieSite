@@ -10,32 +10,33 @@ const playlist = [{
         kind: 'captions',
         'default': true
     }],
-    description: "Rear view slow motion shot of a group of teenage skater friends walking on mountain road with long boards together in slow motion"
+    title: "Title One"
 },
 {
     file: 'https://cdn.jwplayer.com/videos/KkqEqb3o-8yQ1cYbs.mp4',
     image: "https://cdn.jwplayer.com/thumbs/Juu4i0xE-720.jpg",
-    description: "Rear view slow motion shot of a group of teenage skater friends walking on mountain road with long boards together in slow motion"
+    title: "Title Two"
 },
 {
     file: 'https://cdn.jwplayer.com/videos/8L4m9FJB-8yQ1cYbs.mp4',
     image: "https://cdn.jwplayer.com/thumbs/D4d0V5Qn-720.jpg",
-    description: "Beautiful sunset point of view shot along empty desert highway through Monument Valley, Arizona Utah"
+    title: "Title Three",
+    nextUpDisplay: false
 },
 {
     file: 'https://cdn.jwplayer.com/videos/bsbubDD1-8yQ1cYbs.mp4',
     image: "https://cdn.jwplayer.com/thumbs/MWgEswji-720.jpg",
-    description: "Group of friends dancing on the back seat of a convertible car while traveling in a wind farm."
+    title: "Title Four"
 },
 {
     file: 'https://cdn.jwplayer.com/videos/8TbJTFy5-8yQ1cYbs.mp4',
     image: "https://cdn.jwplayer.com/thumbs/rTTGvOdA-720.jpg",
-    description: "Epic shot of a man hiking on the edge of the mountain as a silhouette in colorful sunset"
+    title: "Title Five"
 },
 {
     file: 'https://cdn.jwplayer.com/videos/tkM1zvBq-8yQ1cYbs.mp4',
     image: "https://cdn.jwplayer.com/thumbs/emGwgXml-720.jpg",
-    description: "Aerial of Silhouette of surfers at sunrise"
+    title: "Title Six"
 }];
 
 class WatchContainer extends Component {
@@ -60,15 +61,17 @@ class WatchContainer extends Component {
         const { videoTitle } = this.state;
         return (
             <div className="watch">
-                {videoTitle === '' && <Loader />}
-                <ReactJWPlayer
-                    ref={"jwplayer"}
-                    playerId='my-jw-player-instance'
-                    playerScript='https://content.jwplatform.com/libraries/oCTK7cQT.js'
-                    playlist={playlist}
-                    onVideoLoad={this.onVideoLoad}
-                    onTime={this.onTime}
-                />
+                <div className="video">
+                    {videoTitle === '' && <Loader />}
+                    <ReactJWPlayer
+                        ref={"jwplayer"}
+                        playerId='my-jw-player-instance'
+                        playerScript='https://content.jwplatform.com/libraries/oCTK7cQT.js'
+                        playlist={playlist}
+                        onVideoLoad={this.onVideoLoad}
+                        onTime={this.onTime}                        
+                    />
+                </div>
             </div>
         );
     }
