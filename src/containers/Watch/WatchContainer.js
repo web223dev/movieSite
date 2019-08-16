@@ -20,8 +20,7 @@ const playlist = [{
 {
     file: 'https://cdn.jwplayer.com/videos/8L4m9FJB-8yQ1cYbs.mp4',
     image: "https://cdn.jwplayer.com/thumbs/D4d0V5Qn-720.jpg",
-    title: "Title Three",
-    nextUpDisplay: false
+    title: "Title Three"
 },
 {
     file: 'https://cdn.jwplayer.com/videos/bsbubDD1-8yQ1cYbs.mp4',
