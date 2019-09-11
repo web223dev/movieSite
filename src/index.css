@@ -456,7 +456,13 @@ code {
 .jw-slider-volume .jw-progress{
     background-color: #f2f2f2 !important;
 }
-
+.video-log{
+    color: #000;
+}
+.video-log .modal-body{
+    max-height: 500px;
+    overflow-y: scroll;
+}
 /* .jw-slider-time .jw-buffer, .jw-horizontal-volume-container .jw-buffer{
   background-color: rgba(255,255,255,0.4) !important;
 } */

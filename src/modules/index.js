@@ -7,6 +7,7 @@ import tvdetail from 'modules/tvdetail';
 import similartv from 'modules/tvdetail/similartv';
 import similar from 'modules/moviedetail/similar';
 import search_movie from 'modules/home/searchmovie';
+import watch_movie from 'modules/watchmovie';
 
 const reducers = combineReducers({
     home,
@@ -17,6 +18,7 @@ const reducers = combineReducers({
     similartv,
     similar,
     search_movie,
+    watch_movie
 })
 
 export default reducers;

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import ReactJWPlayer from 'react-jw-player';
+import { connect } from 'react-redux';
 import Loader from 'components/Loader';
+import * as watchActions from 'modules/watchmovie';
+import { bindActionCreators } from 'redux';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const playlist = [{
     file: 'https://cdn.jwplayer.com/videos/KkqEqb3o-8yQ1cYbs.mp4',
@@ -43,21 +47,56 @@ class WatchContainer extends Component {
         super(props);
         this.state = {
             videoTitle: '',
-            videotensec: null
+            cursor: 0,
+            videoStatus: [],
+            modal: false
         };
         this.onVideoLoad = this.onVideoLoad.bind(this);
         this.onTime = this.onTime.bind(this);
+        this.toggle = this.toggle.bind(this);
     }
     onVideoLoad(event) {
-
         this.setState({
-            videoTitle: event.item.description // this only works with json feeds!
+            videoTitle: event.item.title // this only works with json feeds!
         });
     }
     onTime(event) {
+        // console.log(event);
+        const { WatchActions } = this.props;
+        const { videoTitle, videoStatus, cursor } = this.state;
+        // console.log(videoTitle);
+
+        var breakPoint = [
+            0,
+            event.duration / 2,
+            event.duration,
+            -1
+        ];
+        var current_time = event.currentTime; //console.log(current_time);
+        var duration = event.duration;
+        var title = videoTitle;
+        // console.log(breakPoint[cursor]);
+        if (breakPoint[cursor] != -1 && breakPoint[cursor] <= current_time) {
+            // console.log(current_time, cursor, breakPoint[cursor]);
+            this.state.cursor = cursor + 1;
+            WatchActions.logTime({ current_time, duration, title });
+        }
+        if (breakPoint[cursor] === -1) {
+            this.setState({
+                cursor: 0
+            })
+        }
+    }
+
+    toggle() {
+        this.setState(prevState => ({
+            modal: !prevState.modal
+        }));
     }
     render() {
+        const { loglists } = this.props;
         const { videoTitle } = this.state;
+
         return (
             <div className="watch">
                 <div className="video">
@@ -68,12 +107,42 @@ class WatchContainer extends Component {
                         playerScript='https://content.jwplatform.com/libraries/oCTK7cQT.js'
                         playlist={playlist}
                         onVideoLoad={this.onVideoLoad}
-                        onTime={this.onTime}                        
+                        onTime={this.onTime}
                     />
                 </div>
+
+                <Button color="danger" onClick={this.toggle}>abc</Button>
+                <Modal isOpen={this.state.modal} toggle={this.toggle} className="video-log">
+                    <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+                    <ModalBody>
+                        {
+                            loglists.map((loglist, i) => {
+                                const { title, currrentTime, duration } = loglist.toJS();
+                                return (
+                                    <ul className="logs" key={i}>
+                                        <li> Video Title : {title} </li>
+                                        <li> Video Duration: {duration} </li>
+                                        <li> Watched Time: {currrentTime} </li>
+                                    </ul>
+                                )
+                            })
+                        }
+                        
+                    </ModalBody>
+                    <ModalFooter>                        
+                        <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
             </div>
         );
     }
 }
 
-export default WatchContainer;
+export default connect(
+    (state) => ({
+        loglists: state.watch_movie.get('loglists')
+    }),
+    (dispatch) => ({
+        WatchActions: bindActionCreators(watchActions, dispatch)
+    })
+)(WatchContainer);
