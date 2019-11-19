@@ -39,7 +39,7 @@ class CommonMenu extends Component {
                 <Collapse isOpen={isOpen} navbar>
                     <Nav navbar>
                         <NavItem>
-                            <NavLink href="/#/" onClick={hideMenu} style={{ borderColor: pathname === '/' && 'rgb(184, 19, 13)' }}>Home</NavLink>
+                            <NavLink href="/" onClick={hideMenu} style={{ borderColor: pathname === '/' && 'rgb(184, 19, 13)' }}>Home</NavLink>
                         </NavItem>
 
                         <UncontrolledDropdown isOpen={dropdownOpen} onClick={toggleDropdown} nav inNavbar>
@@ -49,25 +49,25 @@ class CommonMenu extends Component {
                             </DropdownToggle>
                             <DropdownMenu left="true">
                                 <div className="triangle"></div>
-                                <DropdownItem onClick={hideMenu} href="/#/tv-programmes/dramas">
+                                <DropdownItem onClick={hideMenu} href="/tv-programmes/dramas">
                                     Dramas
                                 </DropdownItem>
-                                <DropdownItem onClick={hideMenu} href="/#/tv-programmes/entertainment">
+                                <DropdownItem onClick={hideMenu} href="/tv-programmes/entertainment">
                                     Entertainment / Current affairs
                                 </DropdownItem>
-                                <DropdownItem onClick={hideMenu} href="/#/tv-programmes/news">
+                                <DropdownItem onClick={hideMenu} href="/tv-programmes/news">
                                     News
                                 </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
                         <NavItem>
-                            <NavLink href="/#/films" onClick={hideMenu} style={{ borderColor: pathname === '/films' && 'rgb(184, 19, 13)' }}>Films</NavLink>
+                            <NavLink href="/films" onClick={hideMenu} style={{ borderColor: pathname === '/films' && 'rgb(184, 19, 13)' }}>Films</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/#/originals" onClick={hideMenu} style={{ borderColor: pathname === '/originals' && 'rgb(184, 19, 13)' }}>Originals</NavLink>
+                            <NavLink href="/originals" onClick={hideMenu} style={{ borderColor: pathname === '/originals' && 'rgb(184, 19, 13)' }}>Originals</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/#/recently-added" onClick={hideMenu} style={{ borderColor: pathname === '/recently-added' && 'rgb(184, 19, 13)' }}>Recently Added</NavLink>
+                            <NavLink href="/recently-added" onClick={hideMenu} style={{ borderColor: pathname === '/recently-added' && 'rgb(184, 19, 13)' }}>Recently Added</NavLink>
                         </NavItem>
                     </Nav>
                 </Collapse>
